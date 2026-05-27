@@ -28,10 +28,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   SlidersHorizontal,
   Star,
-  LayoutGrid,
   SearchX,
   ChevronDown,
   ArrowRight,
+  Search,
+  X,
 } from "lucide-react";
 
 import { BusinessCard }             from "@/components/directory/BusinessCard";
@@ -53,8 +54,9 @@ type SortValue = (typeof SORT_OPTIONS)[number]["value"];
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 interface DirectoryClientProps {
-  businesses: Business[];
-  categories: Category[];
+  businesses:    Business[];
+  categories:    Category[];
+  initialQuery?: string;
 }
 
 // ─── Filter pill sub-component ────────────────────────────────────────────────
@@ -131,9 +133,10 @@ function Toggle({
 
 // ─── DirectoryClient ──────────────────────────────────────────────────────────
 
-export function DirectoryClient({ businesses, categories }: DirectoryClientProps) {
+export function DirectoryClient({ businesses, categories, initialQuery = "" }: DirectoryClientProps) {
   const toggleId = useId();
 
+  const [searchQuery,       setSearchQuery]       = useState(initialQuery);
   const [activeCategory,    setActiveCategory]    = useState(ALL_SLUG);
   const [showFeaturedOnly,  setShowFeaturedOnly]  = useState(false);
   const [sortBy,            setSortBy]            = useState<SortValue>("rating");
@@ -150,14 +153,31 @@ export function DirectoryClient({ businesses, categories }: DirectoryClientProps
   const filtered = useMemo(() => {
     let result = [...businesses];
 
+    // ── Text search — match against name, description, category, tags, amenities
+    const q = searchQuery.trim().toLowerCase();
+    if (q) {
+      result = result.filter(
+        (b) =>
+          b.name.toLowerCase().includes(q) ||
+          b.shortDescription.toLowerCase().includes(q) ||
+          b.category.toLowerCase().includes(q) ||
+          b.location.toLowerCase().includes(q) ||
+          b.tags?.some((t) => t.toLowerCase().includes(q)) ||
+          b.amenities.some((a) => a.toLowerCase().includes(q)),
+      );
+    }
+
+    // ── Category filter
     if (activeCategory !== ALL_SLUG) {
       result = result.filter((b) => b.categorySlug === activeCategory);
     }
 
+    // ── Featured filter
     if (showFeaturedOnly) {
       result = result.filter((b) => b.featured);
     }
 
+    // ── Sort
     switch (sortBy) {
       case "rating":
         result.sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount);
@@ -171,11 +191,11 @@ export function DirectoryClient({ businesses, categories }: DirectoryClientProps
     }
 
     return result;
-  }, [businesses, activeCategory, showFeaturedOnly, sortBy]);
+  }, [businesses, searchQuery, activeCategory, showFeaturedOnly, sortBy]);
 
   // Key that changes whenever the filter/sort combination changes —
   // triggers AnimatePresence exit + re-enter of the grid.
-  const gridKey = `${activeCategory}|${showFeaturedOnly}|${sortBy}`;
+  const gridKey = `${searchQuery}|${activeCategory}|${showFeaturedOnly}|${sortBy}`;
 
   // Category counts for pill badges
   const countByCategory = useMemo(() => {
@@ -193,6 +213,35 @@ export function DirectoryClient({ businesses, categories }: DirectoryClientProps
       {/* ══ FILTER BAR — sticky below the main header ══════════════════════ */}
       <div className="sticky top-[64px] lg:top-[80px] z-40 bg-parchment/[0.97] backdrop-blur-md border-b border-parchment-muted">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* ── Search input row ── */}
+          <div className="py-3 border-b border-parchment-muted/60">
+            <div className="relative flex items-center">
+              <Search
+                size={16}
+                className="absolute left-3.5 text-oak-fog pointer-events-none"
+                aria-hidden="true"
+              />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search orchards, cider, activities…"
+                aria-label="Search listings"
+                className="w-full bg-parchment-warm border border-parchment-muted rounded-md pl-10 pr-10 py-2.5 font-sans text-body-sm text-oak-charcoal placeholder:text-oak-fog focus:outline-none focus:ring-2 focus:ring-harvest-gold focus:border-transparent transition-all duration-200 min-h-[44px]"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-3 p-1 text-oak-fog hover:text-oak-charcoal transition-colors duration-200"
+                >
+                  <X size={15} aria-hidden="true" />
+                </button>
+              )}
+            </div>
+          </div>
 
           {/* ── Category pills row (horizontally scrollable on mobile) ── */}
           <div
@@ -230,7 +279,12 @@ export function DirectoryClient({ businesses, categories }: DirectoryClientProps
               <span className="font-[500] text-oak-charcoal">{filtered.length}</span>
               {" "}
               {filtered.length === 1 ? "listing" : "listings"}
-              {activeCategory !== ALL_SLUG && (
+              {searchQuery.trim() && (
+                <span className="text-oak-fog"> for{" "}
+                  <span className="text-forest-mid">&ldquo;{searchQuery.trim()}&rdquo;</span>
+                </span>
+              )}
+              {!searchQuery.trim() && activeCategory !== ALL_SLUG && (
                 <span className="text-oak-fog"> in{" "}
                   <span className="text-forest-mid">
                     {categories.find((c) => c.slug === activeCategory)?.label}
@@ -361,17 +415,18 @@ export function DirectoryClient({ businesses, categories }: DirectoryClientProps
                   No listings found
                 </h2>
                 <p className="font-sans text-body-md text-oak-stone max-w-sm leading-relaxed mb-8">
-                  Try removing a filter or browsing a different category.
+                  Try adjusting your search or browsing a different category.
                 </p>
                 <button
                   type="button"
                   onClick={() => {
+                    setSearchQuery("");
                     setActiveCategory(ALL_SLUG);
                     setShowFeaturedOnly(false);
                   }}
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-forest-deep hover:bg-forest-mid text-label text-parchment uppercase tracking-widest transition-all duration-200 min-h-[44px]"
                 >
-                  Clear filters
+                  Clear all filters
                 </button>
               </motion.div>
             )}

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link              from "next/link";
 import Image             from "next/image";
 import {
-  Apple,
-  Coffee,
-  Gift,
-  Home,
   Tractor,
-  Map,
+  Utensils,
+  Wine,
+  ShoppingBag,
+  Home,
+  Music,
+  Heart,
+  BookOpen,
   ArrowRight,
 } from "lucide-react";
 
@@ -41,12 +43,14 @@ export const metadata: Metadata = {
 // ─── Category icon map ────────────────────────────────────────────────────────
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
-  "apple-orchards": Apple,
-  "cafes":          Coffee,
-  "gift-shops":     Gift,
-  "lodging":        Home,
-  "farms":          Tractor,
-  "activities":     Map,
+  "farms":         Tractor,
+  "restaurants":   Utensils,
+  "cider-houses":  Wine,
+  "shops":         ShoppingBag,
+  "accommodation": Home,
+  "entertainment": Music,
+  "weddings":      Heart,
+  "education":     BookOpen,
 };
 
 // ─── Homepage ─────────────────────────────────────────────────────────────────
@@ -66,7 +70,7 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://picsum.photos/seed/oak-glen-hero/1600/900"
+            src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&q=85"
             alt=""
             role="presentation"
             fill
@@ -114,7 +118,7 @@ export default function HomePage() {
           {/* Quick category pills */}
           <AnimatedHeroItem>
             <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {["Apple Orchards", "Cafés", "Gift Shops", "Lodging"].map((label) => (
+              {["Farms & Orchards", "Cider Houses", "Entertainment", "Accommodation"].map((label) => (
                 <span
                   key={label}
                   className="px-4 py-1.5 rounded-full bg-parchment/15 backdrop-blur-sm border border-parchment/25 text-body-sm text-parchment/80"

@@ -1,9 +1,9 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface BusinessHours {
-  day: string;
-  open: string;
-  close: string;
+  day:    string;
+  open:   string;
+  close:  string;
   closed: boolean;
 }
 
@@ -49,241 +49,929 @@ export interface Category {
   count:       number;
 }
 
-// ─── Mock Businesses ──────────────────────────────────────────────────────────
+// ─── Businesses ───────────────────────────────────────────────────────────────
 
 export const businesses: Business[] = [
-  // ── 1. Apple Orchard ───────────────────────────────────────────────────────
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  FARMS & ORCHARDS
+  // ══════════════════════════════════════════════════════════════════════════
+
   {
     id:   "1",
-    slug: "rileys-apple-ranch",
-    name: "Riley's Apple Ranch",
+    slug: "moms-country-orchards",
+    name: "Mom's Country Orchards",
     shortDescription:
-      "Family-owned U-pick orchard with 30+ heritage apple varieties, fresh-pressed cider, and weekend hayrides through the mountain trees.",
-    description: `Nestled at 4,800 feet in the San Bernardino Mountains, Riley's Apple Ranch has been welcoming families since 1952. Our third-generation orchard spans 28 hand-tended acres with over 30 heirloom and heritage apple varieties—many you simply won't find in any grocery store.
+      "Year-round family orchard known for freshly picked apples, handcrafted jams, jellies, and old-fashioned preserves made right on the property.",
+    description: `Mom's Country Orchards sits at the heart of Oak Glen's apple country, welcoming visitors every day of the year with the kind of unpretentious warmth that only a true family operation can offer. While the rest of Oak Glen's orchards run on harvest-season schedules, this one keeps the gates open through winter and spring—so a jar of apple butter or a bag of freshly picked fruit is never more than a drive up the hill away.
 
-Visitors are welcome to wander the rows and hand-pick their own selections from September through early December. Our on-site press runs daily during peak season, producing fresh unpasteurized cider the same morning the apples are harvested. The rustic barn store carries our full range of apple butters, jams, dried rings, and pies baked by the Riley family each morning.
+The orchard specializes in a rotating selection of apple varieties suited to the San Bernardino Mountain climate, with peak picking running from late summer through early December. Alongside fresh fruit, the on-site store carries the family's signature jams, jellies, and preserves—apple butter, cinnamon apple spread, pear jam, and a rotating cast of seasonal fruit preserves that have become pantry staples for generations of Oak Glen regulars.
 
-Weekend hayrides depart hourly through the lower orchard, and our cider-tasting flights pair beautifully with the local artisan cheese boards available at the tasting counter. School groups and private parties are warmly welcomed with advance notice—ask about our harvest education programs.`,
-    category:     "Apple Orchard",
-    categorySlug: "apple-orchards",
-    rating:       4.8,
-    reviewCount:  312,
-    imageUrl:     "https://picsum.photos/seed/apple-ranch-hero/1200/675",
+It's a simple place done right: no flashy attractions, just honest fruit, honest flavors, and a friendly crew who can tell you exactly which variety came off the tree this morning.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.7,
+    reviewCount:  184,
+    imageUrl:
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=1200&q=80",
     galleryImages: [
-      "https://picsum.photos/seed/apple-ranch-g1/800/600",
-      "https://picsum.photos/seed/apple-ranch-g2/800/600",
-      "https://picsum.photos/seed/apple-ranch-g3/800/600",
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=75",
+      "https://images.unsplash.com/photo-1569870499705-504209102861?w=800&q=75",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
     ],
     location: "Oak Glen, CA",
     address: {
-      street: "11101 Apple Tree Lane",
+      street: "38695 Oak Glen Road",
       city:   "Oak Glen",
       state:  "CA",
       zip:    "92399",
     },
-    phone:       "(909) 797-1001",
-    website:     "https://rileysappleranch.com",
-    email:       "hello@rileysappleranch.com",
-    established: 1952,
+    phone:   "(909) 797-4249",
+    website: "https://momsoakglen.com",
+    hours: [
+      { day: "Monday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Tuesday",   open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+    ],
+    amenities: [
+      "Open Year-Round",
+      "Fresh-Picked Apples",
+      "Farm Store",
+      "Jams & Preserves",
+      "Parking",
+      "Family Friendly",
+    ],
+    featured:   false,
+    priceRange: "$",
+    tags:       ["apples", "jams", "preserves", "year-round", "farm-store"],
+  },
+
+  {
+    id:   "2",
+    slug: "snow-line-orchards",
+    name: "Snow-Line Orchards and Winery",
+    shortDescription:
+      "Home to California's oldest chestnut tree and the original 1898 Apple Shed — offering hard cider, wine tasting, cider mini-donuts, and u-pick raspberries.",
+    description: `Snow-Line Orchards occupies one of Oak Glen's most storied parcels — the original 1898 Apple Shed still anchors the property, its weathered timbers and corrugated roof carrying more than a century of harvest seasons. California's oldest chestnut tree stands nearby, a living landmark that draws history buffs and photographers alike every autumn.
+
+The orchard has grown well beyond its original footprint. Today's offerings span three flavors of fresh-pressed apple cider, a hard cider and wine tasting room pouring small-batch varietals from the estate's own fruit, and the ever-popular Apple Cider Mini-Donuts — hot, crisp, and dusted in cinnamon sugar. In season, guests can pick their own raspberries in the berry fields or take home several varieties of freshly bagged apples.
+
+The antiques and gifts room inside the historic shed rounds out the visit with locally made keepsakes and seasonal décor. Snow-Line is one of those rare places where every visit turns up something new — a bottle you haven't tried, a variety you haven't tasted, a corner of the property you haven't explored.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.8,
+    reviewCount:  326,
+    imageUrl:
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:       "909-256-0405",
+    website:     "https://oakglenorchard.com",
+    established: 1898,
+    hours: [
+      { day: "Monday",    open: "",        close: "",        closed: true  },
+      { day: "Tuesday",   open: "",        close: "",        closed: true  },
+      { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+    ],
+    amenities: [
+      "Hard Cider & Wine Tasting",
+      "Cider Mini-Donuts",
+      "U-Pick Raspberries",
+      "Three Cider Varieties",
+      "Antiques & Gifts",
+      "Historic 1898 Apple Shed",
+      "Parking",
+    ],
+    featured:   true,
+    priceRange: "$$",
+    tags:       ["cider", "wine-tasting", "donuts", "u-pick", "historic", "raspberries"],
+  },
+
+  {
+    id:   "3",
+    slug: "los-rios-rancho",
+    name: "Los Rios Rancho",
+    shortDescription:
+      "300-acre working apple farm featuring a bakery, BBQ café, u-pick fruit, petting zoo, horseback rides, wagon rides, corn maze, and wedding venues.",
+    description: `Los Rios Rancho is Oak Glen's most expansive destination — 300 acres of working apple farm stretching across the valley floor and hillside, offering more ways to spend a day in the mountains than most visitors can fit into one trip. The farm has operated continuously for generations and today balances a serious agricultural operation with a full slate of family-friendly activities.
+
+The bakery turns out apple pies, fritters, and fresh-baked goods all season long. The BBQ Café serves up hearty plates of smoked meats alongside apple-themed sides. U-pick fruit draws picking enthusiasts from across the Inland Empire each autumn — apples, of course, but also berries and stone fruit depending on the season. Nature trails wind through the property, picnic grounds are scattered throughout, and the petting zoo keeps younger visitors thoroughly entertained.
+
+For those seeking a bigger adventure, horseback rides and wagon rides traverse the orchard rows with sweeping views across the valley. The seasonal corn maze is a must-do in October. And for couples, Los Rios Rancho offers private wedding packages and ticketed dinner events throughout the year, making it one of Oak Glen's most versatile venues for any occasion.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.8,
+    reviewCount:  512,
+    imageUrl:
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=75",
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+    ],
+    location: "Yucaipa / Oak Glen, CA",
+    address: {
+      street: "39611 Oak Glen Road",
+      city:   "Yucaipa",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "(909) 797-1005",
+    website: "https://losriosrancho.com",
+    hours: [
+      { day: "Monday",    open: "",        close: "",        closed: true  },
+      { day: "Tuesday",   open: "",        close: "",        closed: true  },
+      { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+    ],
+    amenities: [
+      "Bakery",
+      "BBQ Café",
+      "U-Pick Fruit",
+      "Country Store",
+      "Petting Zoo",
+      "Horseback Rides",
+      "Wagon Rides",
+      "Corn Maze",
+      "Nature Trails",
+      "Picnic Grounds",
+      "Wedding Venue",
+      "Ticketed Dinner Events",
+      "Parking",
+    ],
+    featured:   true,
+    priceRange: "$$",
+    tags:       [
+      "u-pick", "family-friendly", "corn-maze", "weddings",
+      "horseback", "bbq", "bakery", "petting-zoo",
+    ],
+  },
+
+  {
+    id:   "4",
+    slug: "stone-pantry-orchard",
+    name: "Stone Pantry Orchard",
+    shortDescription:
+      "Seasonal weekend orchard open Labor Day through Thanksgiving for u-pick apples, pears, blackberries, and pumpkins — plus press-your-own cider.",
+    description: `Stone Pantry Orchard runs a tight and intentional season — weekends only, from Labor Day through Thanksgiving — and that focused calendar gives every visit a sense of occasion. The orchard offers something relatively rare in Oak Glen: a press-your-own cider experience, where guests can push the press and take home bottles of fresh juice they made themselves.
+
+U-pick here spans a satisfying range of autumn flavors: apples in several varieties, crisp pears, sweet-tart blackberries, and pumpkins for the Halloween and Thanksgiving crowd. The pace is unhurried, the rows are well-tended, and the mountain air at this elevation carries that particular crispness that makes autumn in the San Bernardinos feel unlike anywhere else in Southern California.
+
+Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up when the harvest demands it, not whenever is convenient. That relationship with the calendar is what makes everything taste better.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.6,
+    reviewCount:  143,
+    imageUrl:
+      "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-557-3447",
+    website: "https://stonepantryorchard.com",
+    hours: [
+      { day: "Monday",    open: "", close: "", closed: true  },
+      { day: "Tuesday",   open: "", close: "", closed: true  },
+      { day: "Wednesday", open: "", close: "", closed: true  },
+      { day: "Thursday",  open: "", close: "", closed: true  },
+      { day: "Friday",    open: "", close: "", closed: true  },
+      { day: "Saturday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+    ],
+    amenities: [
+      "U-Pick Apples & Pears",
+      "U-Pick Blackberries",
+      "U-Pick Pumpkins",
+      "Press-Your-Own Cider",
+      "Weekends Only (Labor Day–Thanksgiving)",
+      "Parking",
+      "Family Friendly",
+    ],
+    featured:   false,
+    priceRange: "$",
+    tags:       ["u-pick", "cider-press", "seasonal", "pumpkins", "weekend-only"],
+  },
+
+  {
+    id:   "5",
+    slug: "willowbrook-apple-farm",
+    name: "Willowbrook Apple Farm",
+    shortDescription:
+      "Small-batch farm offering u-press cider, u-pick apples and berries, local honey, BBQ sauce, and housemade jams and jellies.",
+    description: `Willowbrook Apple Farm is the kind of place that rewards a slow walk and a willingness to linger. The farm keeps its offerings intentionally small-scale — a philosophy that shows in the quality of everything it produces. The u-press cider station lets visitors engage directly with the harvest, pressing their own juice to take home from fruit picked just yards away.
+
+Beyond cider, the farm's store carries an honest lineup of what it grows and makes: u-pick apples and berries in season, house-made jams and jellies put up in small batches, and locally sourced honey from hives kept on the property. A housemade BBQ sauce rounds out the pantry shelf, developed over years by the farm family to complement a wood-fired grill.
+
+Willowbrook is a quieter corner of Oak Glen — not the biggest or the loudest, but deeply itself. For visitors who want to understand what this mountain community is built on, a visit here covers a lot of ground in a short amount of time.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.6,
+    reviewCount:  97,
+    imageUrl:
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=75",
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "",
+    website: "https://willowbrookapplefarm.com",
+    hours: [
+      { day: "Monday",    open: "", close: "", closed: true  },
+      { day: "Tuesday",   open: "", close: "", closed: true  },
+      { day: "Wednesday", open: "", close: "", closed: true  },
+      { day: "Thursday",  open: "", close: "", closed: true  },
+      { day: "Friday",    open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "5:30 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+    ],
+    amenities: [
+      "U-Press Cider",
+      "U-Pick Apples & Berries",
+      "Local Honey",
+      "Jams & Jellies",
+      "BBQ Sauce",
+      "Farm Store",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$",
+    tags:       ["cider-press", "u-pick", "honey", "jams", "farm-store"],
+  },
+
+  {
+    id:   "6",
+    slug: "stone-soup-farm",
+    name: "Stone Soup Farm & Heritage Orchard",
+    shortDescription:
+      "Regenerative apple orchard and flower farm with a sustainable floral studio, farm shop, seasonal u-pick, and curated private and public dining events.",
+    description: `Stone Soup Farm is something genuinely new in Oak Glen's landscape — a regenerative apple orchard and cut-flower farm occupying 12131 S. Oak Glen Road with a vision that reaches beyond the harvest season into something more like a living experiment in land stewardship.
+
+The orchard practices regenerative agriculture: cover cropping, composting, and minimal intervention growing that puts soil health at the center of everything. The flower farm grows alongside the apple trees, supplying the on-site floral studio with seasonal blooms that local and visiting florists have come to rely on for their work.
+
+The farm shop carries what the land produces — fresh fruit, cut flowers, dried arrangements, and seasonal pantry goods. Curated dining events, held on select dates through spring, summer, and autumn, bring guests to long tables set among the orchard rows for chef-driven meals built around whatever is in peak condition that week. Private events can be arranged throughout the year. It's a destination for people who want their time in Oak Glen to feel deliberate and connected to something real.`,
+    category:     "Farms & Orchards",
+    categorySlug: "farms",
+    rating:       4.9,
+    reviewCount:  88,
+    imageUrl:
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "12131 S. Oak Glen Road",
+      city:   "Yucaipa",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "",
+    website: "https://stonesoupfarmca.com",
+    hours: [
+      { day: "Monday",    open: "", close: "", closed: true  },
+      { day: "Tuesday",   open: "", close: "", closed: true  },
+      { day: "Wednesday", open: "", close: "", closed: true  },
+      { day: "Thursday",  open: "", close: "", closed: true  },
+      { day: "Friday",    open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+    ],
+    amenities: [
+      "Regenerative Orchard",
+      "Cut Flower Farm",
+      "Floral Studio",
+      "Farm Shop",
+      "Seasonal U-Pick",
+      "Curated Dining Events",
+      "Private Events",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$$$",
+    tags:       ["regenerative", "flowers", "dining-events", "floral-studio", "u-pick"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  RESTAURANTS & CAFÉS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "7",
+    slug: "oak-glen-steak-house",
+    name: "Oak Glen Steak House & Saloon",
+    shortDescription:
+      "Fine dining in the mountains with prime steaks, Sunday brunch, banquet rooms, craft cocktails, and a lively sports bar — open year-round.",
+    description: `The Oak Glen Steak House & Saloon has long served as the mountain community's anchor for sit-down dining — a place where visitors and locals alike come to slow down, eat well, and settle into an evening. The kitchen runs a full fine-dining menu built around prime cuts, house-made sides, and seasonal preparations that reflect the mountain setting without overcomplicating the experience.
+
+Sunday brunch draws a devoted crowd to the dining room's warm interior, while the sports bar offers a livelier atmosphere for those arriving after a long day on the orchard circuit. Private banquet rooms accommodate gatherings of most sizes, from family celebrations to corporate retreat dinners.
+
+Craft cocktails pull from a thoughtful spirits list with a regional bent, and the wine program favors California producers with particular attention to mountain-climate appellations. The combination of fine dining and a relaxed saloon atmosphere makes the Steak House unusually versatile — equally at home hosting an anniversary dinner or a casual weeknight burger.`,
+    category:     "Restaurants & Cafés",
+    categorySlug: "restaurants",
+    rating:       4.5,
+    reviewCount:  278,
+    imageUrl:
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=75",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=75",
+      "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "(909) 797-2844",
+    website: "https://oakglensteakhouse.com",
+    hours: [
+      { day: "Monday",    open: "",         close: "",         closed: true  },
+      { day: "Tuesday",   open: "",         close: "",         closed: true  },
+      { day: "Wednesday", open: "11:00 AM", close: "9:00 PM",  closed: false },
+      { day: "Thursday",  open: "11:00 AM", close: "9:00 PM",  closed: false },
+      { day: "Friday",    open: "11:00 AM", close: "10:00 PM", closed: false },
+      { day: "Saturday",  open: "10:00 AM", close: "10:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "8:00 PM",  closed: false },
+    ],
+    amenities: [
+      "Fine Dining",
+      "Sunday Brunch",
+      "Banquet Rooms",
+      "Craft Cocktails",
+      "Sports Bar",
+      "Full Bar",
+      "Private Events",
+      "Reservations Recommended",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$$$",
+    tags:       ["steakhouse", "fine-dining", "brunch", "cocktails", "banquet"],
+  },
+
+  {
+    id:   "8",
+    slug: "wilshires-apple-shed",
+    name: "Wilshire's Apple Shed & Coffee Shop",
+    shortDescription:
+      "Casual gathering spot on the Los Rios Rancho property serving artisan pizza, hard cider, specialty coffee, and a carefully curated selection of cigars.",
+    description: `Wilshire's Apple Shed occupies its own pocket of the Los Rios Rancho property, operating as a distinct destination with a personality all its own. The combination — artisan pizza, hard cider, specialty coffee, and cigars — sounds eclectic on paper, but lands as entirely coherent in practice. It's the kind of place that rewards arriving without a fixed agenda and leaving several hours later.
+
+The pizza program turns out wood-fired pies with seasonal toppings that reflect what's happening on the farm just outside the door. The hard cider pours are sourced locally, leaning on what the Oak Glen valley produces. Coffee is pulled seriously — not as an afterthought, but as a full program with multiple roasters and seasonal offerings.
+
+The cigar selection, carried in a dedicated humidor, has built a loyal following among visitors who appreciate a post-lunch smoke on the patio with mountain air and orchard views. Wilshire's rewards return visits — the menu shifts with the seasons and the crowd tends to be congenial. An easy place to find yourself spending more time than planned.`,
+    category:     "Restaurants & Cafés",
+    categorySlug: "restaurants",
+    rating:       4.6,
+    reviewCount:  162,
+    imageUrl:
+      "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=75",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "39611 Oak Glen Road",
+      city:   "Yucaipa",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-790-3322",
+    website: "https://losriosrancho.com/wilshire-apple-shed/",
+    hours: [
+      { day: "Monday",    open: "",        close: "",        closed: true  },
+      { day: "Tuesday",   open: "",        close: "",        closed: true  },
+      { day: "Wednesday", open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+    ],
+    amenities: [
+      "Artisan Pizza",
+      "Hard Cider",
+      "Specialty Coffee",
+      "Cigars",
+      "Outdoor Patio",
+      "Orchard Views",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$$",
+    tags:       ["pizza", "cider", "coffee", "cigars", "patio"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  CIDER HOUSES
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "9",
+    slug: "oak-glen-cider-company",
+    name: "Oak Glen Cider Company",
+    shortDescription:
+      "Craft hard cider produced blossom to bottle on the historic Los Rios Rancho apple farm — the full expression of Oak Glen's apple heritage in a glass.",
+    description: `Oak Glen Cider Company tells the whole story of this mountain community in every bottle — from blossom to harvest to fermentation to your glass. Operating on the grounds of the historic Los Rios Rancho farm, the cidery uses estate fruit grown in the same valley soil that has been producing apples since the 1800s, giving each release a genuine sense of place that you can't manufacture or import.
+
+The range spans the full spectrum of cider styles: crisp and dry, gently sparkling, off-dry with fruit character, and richer barrel-aged expressions released in limited quantities each winter. All fermentation happens on-site, and the cidermaking team works from a philosophy of minimal intervention — letting the quality of the fruit and the particular character of each year's harvest speak for itself.
+
+Tasting is available at the cidery during regular hours. For visitors working their way through Oak Glen's apple country in a single day, stopping here brings the whole experience into focus: this is what happens when a community treats its fruit as something worth taking seriously.`,
+    category:     "Cider Houses",
+    categorySlug: "cider-houses",
+    rating:       4.8,
+    reviewCount:  214,
+    imageUrl:
+      "https://images.unsplash.com/photo-1569870499705-504209102861?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=75",
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "39611 Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-790-3322",
+    website: "https://oakglenciderco.com",
+    hours: [
+      { day: "Monday",    open: "",        close: "",        closed: true  },
+      { day: "Tuesday",   open: "",        close: "",        closed: true  },
+      { day: "Wednesday", open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+    ],
+    amenities: [
+      "Hard Cider Tasting",
+      "Estate-Grown Fruit",
+      "Blossom-to-Bottle Production",
+      "Cider To Go",
+      "Seasonal Releases",
+      "Parking",
+    ],
+    featured:   true,
+    priceRange: "$$",
+    tags:       ["hard-cider", "tasting-room", "craft", "estate-grown", "local"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  SHOPS & STORES
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "10",
+    slug: "apple-blossom-ranch",
+    name: "Apple Blossom Ranch",
+    shortDescription:
+      "Small orchard gift shop carrying home-grown apples, fresh-pressed cider, raw local honey, and a handpicked selection of artisan gifts.",
+    description: `Apple Blossom Ranch keeps things simple, and that simplicity is the point. The small gift shop carries what the ranch grows and what the local area produces — home-grown apples, fresh-pressed cider, raw honey harvested from on-property hives, and a curated selection of gifts that reflect the Oak Glen spirit without veering into tourist-trap territory.
+
+The honey operation is a particular point of pride: the ranch keeps hives across the orchard, and the resulting honey carries a distinctly floral, apple-blossom character that's unlike anything produced elsewhere. Raw, unfiltered, and sold in small-batch jars, it's one of those products that converts skeptics on first taste.
+
+Cider is pressed from the ranch's own apples, and the gift selection skews toward locally made goods — preserves, candles, seasonal décor, and the kind of items that make sense as a token of a day well spent in the mountains. For visitors who want a quiet, unhurried stop, Apple Blossom Ranch delivers exactly that.`,
+    category:     "Shops & Stores",
+    categorySlug: "shops",
+    rating:       4.6,
+    reviewCount:  119,
+    imageUrl:
+      "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=75",
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "(562) 450-8139",
+    website: "https://holyhoney.com",
+    hours: [
+      { day: "Monday",    open: "",         close: "",         closed: true  },
+      { day: "Tuesday",   open: "",         close: "",         closed: true  },
+      { day: "Wednesday", open: "",         close: "",         closed: true  },
+      { day: "Thursday",  open: "",         close: "",         closed: true  },
+      { day: "Friday",    open: "10:00 AM", close: "5:00 PM",  closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "5:30 PM",  closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
+    ],
+    amenities: [
+      "Home-Grown Apples",
+      "Fresh-Pressed Cider",
+      "Raw Local Honey",
+      "Gift Shop",
+      "Parking",
+      "Family Friendly",
+    ],
+    featured:   false,
+    priceRange: "$",
+    tags:       ["honey", "cider", "gifts", "apples", "small-batch"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  ACCOMMODATION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "11",
+    slug: "stone-oak-manor",
+    name: "Stone Oak Manor",
+    shortDescription:
+      "A historic bed & breakfast available by reservation — ideal for large groups, family retreats, company getaways, and wedding parties in the heart of Oak Glen.",
+    description: `Stone Oak Manor is one of Oak Glen's most distinctive overnight destinations — a historic bed and breakfast that operates by reservation only, giving each visit a private and unhurried character that sets it apart from any standard hotel experience. The property is well-suited to groups: families seeking a weekend retreat, corporate teams looking for a mountain escape, and wedding parties who want to stay on-site before or after a celebration in the area.
+
+The manor's historic bones are part of the experience — the architecture and character of the building have been preserved with care, and the grounds reflect a setting that rewards time spent outdoors. Amenities are geared toward comfort and gathering rather than novelty, with spaces designed to encourage the kind of slow, extended visit that Oak Glen's landscape demands.
+
+Bookings are handled directly through the manor, and rates and availability are best confirmed through the website. It's worth reaching out early for autumn weekends, which book quickly among visitors who want to experience Oak Glen's harvest season from a base that feels genuinely rooted in the community.`,
+    category:     "Accommodation",
+    categorySlug: "accommodation",
+    rating:       4.8,
+    reviewCount:  76,
+    imageUrl:
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=800&q=75",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=75",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "",
+    website: "https://stoneoakmanor.com",
+    hours: [
+      { day: "Monday",    open: "By Reservation", close: "", closed: false },
+      { day: "Tuesday",   open: "By Reservation", close: "", closed: false },
+      { day: "Wednesday", open: "By Reservation", close: "", closed: false },
+      { day: "Thursday",  open: "By Reservation", close: "", closed: false },
+      { day: "Friday",    open: "By Reservation", close: "", closed: false },
+      { day: "Saturday",  open: "By Reservation", close: "", closed: false },
+      { day: "Sunday",    open: "By Reservation", close: "", closed: false },
+    ],
+    amenities: [
+      "Historic B&B",
+      "By Reservation Only",
+      "Group & Family Accommodations",
+      "Company Retreats",
+      "Wedding Party Hosting",
+      "Grounds & Gardens",
+      "Parking",
+    ],
+    featured:   true,
+    priceRange: "$$$",
+    tags:       ["bed-and-breakfast", "historic", "groups", "weddings", "retreat"],
+  },
+
+  {
+    id:   "12",
+    slug: "oak-glen-christian-conference-center",
+    name: "Oak Glen Christian Conference Center",
+    shortDescription:
+      "Mountain retreat and conference facility perfect for church groups, ministry retreats, school escapes, and youth camps in a peaceful Oak Glen setting.",
+    description: `The Oak Glen Christian Conference Center occupies a serene stretch of mountain property that has long served as a gathering place for faith communities, schools, and ministry groups seeking a retreat removed from the noise of the valley below. The facility runs year-round, with spring and summer dates filling quickly among groups planning ahead.
+
+The center is equipped for adult retreats, college ministry weekends, youth group events, and children's ministry programming — a flexibility that makes it one of the more versatile group-stay options in the Oak Glen area. Weekend bookings are particularly sought-after, so early planning is strongly recommended for autumn and spring, when the mountain setting is at its most compelling.
+
+The peaceful natural surroundings, combined with facilities designed for group gatherings, make this a preferred destination for organizations that want the restorative quality of the mountain environment combined with the infrastructure to host a structured program. For more information on availability and rates, visit their website directly.`,
+    category:     "Accommodation",
+    categorySlug: "accommodation",
+    rating:       4.7,
+    reviewCount:  54,
+    imageUrl:
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=75",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-797-2570",
+    website: "https://oakglen.org",
+    hours: [
+      { day: "Monday",    open: "By Reservation", close: "", closed: false },
+      { day: "Tuesday",   open: "By Reservation", close: "", closed: false },
+      { day: "Wednesday", open: "By Reservation", close: "", closed: false },
+      { day: "Thursday",  open: "By Reservation", close: "", closed: false },
+      { day: "Friday",    open: "By Reservation", close: "", closed: false },
+      { day: "Saturday",  open: "By Reservation", close: "", closed: false },
+      { day: "Sunday",    open: "By Reservation", close: "", closed: false },
+    ],
+    amenities: [
+      "Group Retreat Facilities",
+      "Year-Round",
+      "Youth Ministry Programs",
+      "Adult & College Retreats",
+      "Conference Space",
+      "Mountain Setting",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$$",
+    tags:       ["retreat", "conference", "groups", "church", "camp"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  ENTERTAINMENT & EVENTS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "13",
+    slug: "riley-s-farm",
+    name: "Riley's Farm",
+    shortDescription:
+      "Working apple orchard and living history farm with pick-your-own fruit, immersive living history education, dinner theater, and historically-themed overnight stays.",
+    description: `Riley's Farm is unlike any other destination in Oak Glen — a working apple orchard that doubles as a living history experience, where the past is treated not as decoration but as a genuine subject of study and performance. Nestled in the apple-growing foothills at the upper edge of Oak Glen, the farm has built a loyal following among school groups, families, and adults who want more than a standard harvest outing.
+
+The pick-your-own program runs through the apple season, with several varieties available and the farm's crew on hand to guide visitors through the rows. But the living history programming is what sets Riley's apart: costumed interpreters bring the colonial and early American periods to life through immersive experiences that engage visitors directly rather than lecturing at them.
+
+Dinner theater events are held on select evenings throughout the year, combining a multi-course meal with period-appropriate entertainment in a candlelit setting that's equal parts theatrical and genuinely atmospheric. For those wanting a deeper immersion, historically-themed overnight stays are available — extending the experience into the following morning with the kind of continuity that day visits simply can't offer. Group banquet facilities round out a venue that handles everything from school field trips to private celebrations.`,
+    category:     "Entertainment & Events",
+    categorySlug: "entertainment",
+    rating:       4.7,
+    reviewCount:  389,
+    imageUrl:
+      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=75",
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-797-7534",
+    website: "https://rileysfarm.com",
     hours: [
       { day: "Monday",    open: "",         close: "",         closed: true  },
       { day: "Tuesday",   open: "",         close: "",         closed: true  },
       { day: "Wednesday", open: "9:00 AM",  close: "5:00 PM",  closed: false },
       { day: "Thursday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Friday",    open: "8:00 AM",  close: "6:00 PM",  closed: false },
-      { day: "Saturday",  open: "7:30 AM",  close: "6:30 PM",  closed: false },
+      { day: "Friday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Saturday",  open: "8:00 AM",  close: "6:00 PM",  closed: false },
       { day: "Sunday",    open: "8:00 AM",  close: "6:00 PM",  closed: false },
     ],
     amenities: [
-      "U-Pick Available",
-      "Fresh-Pressed Cider",
-      "Cider Tasting Flights",
-      "Barn Store",
-      "Weekend Hayrides",
-      "Picnic Areas",
-      "Restrooms",
+      "Pick-Your-Own Apples",
+      "Living History Programs",
+      "Dinner Theater",
+      "Overnight Stays",
+      "Group Banquet Facilities",
+      "School Field Trips",
       "Parking",
-      "Dog Friendly (on leash)",
-      "School Groups Welcome",
+      "Restrooms",
     ],
     featured:   true,
     priceRange: "$$",
-    tags:       ["u-pick", "cider", "family-friendly", "seasonal", "hayrides"],
+    tags:       [
+      "living-history", "dinner-theater", "u-pick", "school-groups",
+      "overnight", "family-friendly", "events",
+    ],
   },
 
-  // ── 2. Café & Cidery ───────────────────────────────────────────────────────
   {
-    id:   "2",
-    slug: "the-cider-press-cafe",
-    name: "The Cider Press Café",
+    id:   "14",
+    slug: "oak-tree-mountain",
+    name: "Oak Tree Mountain",
     shortDescription:
-      "Artisan café and cidery serving wood-fired pastries, single-origin coffee, and small-batch hard cider crafted from locally grown mountain apples.",
-    description: `The Cider Press Café began as a weekend pop-up beneath a sprawling valley oak and grew, harvest by harvest, into one of Oak Glen's most beloved morning destinations. The open-air pavilion wraps around an original 1920s cider press—restored and still occasionally operational—giving the space an authenticity you can feel the moment you step through the gate.
+      "14-acre family destination with an animal park, trout ponds, Apple Annie's Bakery, axe throwing, unique shops, live music, and year-round entertainment.",
+    description: `Oak Tree Mountain is one of Oak Glen's most expansive all-day destinations, occupying 14 acres in the heart of the community at 38480 Oak Glen Road. The property is designed to hold a family's attention for the better part of a day, with enough variety that different members of the group can find something genuinely compelling in each corner of the property.
 
-Pastry chef Marisol Vega fires her wood-oven twice daily: first at dawn for the breakfast menu of apple-cardamom scones, brown-butter croissants, and seasonal galettes; then again at midday for the lunch rotation of flatbreads and hand-rolled empanadas. All baked goods use heritage flour milled in Tehachapi and locally foraged fruit when in season.
+The animal park houses a diverse collection of animals that younger visitors find endlessly engaging. The trout ponds offer a first fishing experience for those who've never held a rod, with equipment provided and instruction happily given. Apple Annie's Bakery anchors the food program with fresh-baked goods and apple-themed treats that have become a reason to visit in their own right.
 
-On the beverage side, head cider-maker Tom Keane works exclusively with apples from within a 12-mile radius of the café, producing small-batch releases ranging from a bone-dry sparkling pét-nat to a warming barrel-aged spiced cider available only in December. Coffee is sourced from Verve Roasters and pulled on a Synesso by a team trained to treat every pour with the same care as the ciders.`,
-    category:     "Café & Cidery",
-    categorySlug: "cafes",
-    rating:       4.9,
-    reviewCount:  187,
-    imageUrl:     "https://picsum.photos/seed/cider-cafe-hero/1200/675",
+Axe Therapy — Oak Tree Mountain's axe-throwing facility — has emerged as a standout activity for older visitors looking for something more kinetic. Live music and entertainment programming run on weekends and through the high season, and the unique shops scattered across the property carry the kind of locally made goods that reward browsing. It's a place designed to surprise, and it usually succeeds.`,
+    category:     "Entertainment & Events",
+    categorySlug: "entertainment",
+    rating:       4.6,
+    reviewCount:  447,
+    imageUrl:
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=80",
     galleryImages: [
-      "https://picsum.photos/seed/cafe-g1/800/600",
-      "https://picsum.photos/seed/cafe-g2/800/600",
-      "https://picsum.photos/seed/cafe-g3/800/600",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+      "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=800&q=75",
+      "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=800&q=75",
     ],
     location: "Oak Glen, CA",
     address: {
-      street: "38740 Oak Glen Road",
+      street: "38480 Oak Glen Road",
       city:   "Oak Glen",
       state:  "CA",
       zip:    "92399",
     },
-    phone:       "(909) 797-2255",
-    website:     "https://ciderpress.cafe",
-    email:       "hello@ciderpress.cafe",
-    established: 2014,
+    phone:       "909-797-4420",
+    website:     "https://oaktreemountain.com",
+    email:       "contact@oaktreemountain.com",
+    hours: [
+      { day: "Monday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Tuesday",   open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Wednesday", open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Thursday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Friday",    open: "9:00 AM",  close: "7:00 PM",  closed: false },
+      { day: "Saturday",  open: "8:00 AM",  close: "7:00 PM",  closed: false },
+      { day: "Sunday",    open: "8:00 AM",  close: "6:00 PM",  closed: false },
+    ],
+    amenities: [
+      "Animal Park",
+      "Trout Ponds",
+      "Apple Annie's Bakery",
+      "Axe Throwing",
+      "Live Music & Entertainment",
+      "Unique Shops",
+      "Restaurants On-Site",
+      "Year-Round",
+      "Parking",
+      "Restrooms",
+    ],
+    featured:   true,
+    priceRange: "$$",
+    tags:       [
+      "family-friendly", "axe-throwing", "animals", "fishing",
+      "bakery", "live-music", "year-round",
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  WEDDINGS & EVENTS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "15",
+    slug: "the-homestead-at-wilshire-ranch",
+    name: "The Homestead at Wilshire Ranch",
+    shortDescription:
+      "A 5.5-acre mountain wedding and event venue surrounded by apple trees, lilacs, California oaks, and sweeping views toward Lake Perris and the San Bernardinos.",
+    description: `The Homestead at Wilshire Ranch is tucked away on 5.5 acres in scenic Oak Glen with the kind of natural beauty that makes event planning feel effortless. Apple trees, lilacs, California oaks, and sycamores frame a setting where the views extend north to Wilshire Peak and the San Bernardino mountain range and south toward Lake Perris — a panorama that reminds every guest exactly where they are.
+
+The property is designed around weddings and private events, offering a natural canvas that handles both intimate ceremonies and larger celebrations with equal grace. The outdoor spaces flow naturally from one to the next: a ceremony lawn shaded by mature oaks, reception areas that open toward the orchard view, and tucked garden corners that reward a slower, exploratory pace.
+
+The Homestead is a reminder that the best event venues are the ones where the location itself is doing much of the work — where the setting carries an inherent character that no amount of rental furniture or floral arrangement can replicate. For couples wanting a Southern California wedding that feels genuinely removed from the urban landscape, this is an address worth knowing.`,
+    category:     "Weddings & Events",
+    categorySlug: "weddings",
+    rating:       4.9,
+    reviewCount:  62,
+    imageUrl:
+      "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=75",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-790-8010",
+    website: "https://homesteadoakglen.com",
+    hours: [
+      { day: "Monday",    open: "By Appointment", close: "", closed: false },
+      { day: "Tuesday",   open: "By Appointment", close: "", closed: false },
+      { day: "Wednesday", open: "By Appointment", close: "", closed: false },
+      { day: "Thursday",  open: "By Appointment", close: "", closed: false },
+      { day: "Friday",    open: "By Appointment", close: "", closed: false },
+      { day: "Saturday",  open: "Events",          close: "", closed: false },
+      { day: "Sunday",    open: "Events",          close: "", closed: false },
+    ],
+    amenities: [
+      "5.5-Acre Property",
+      "Ceremony & Reception Spaces",
+      "Apple Tree Orchard Setting",
+      "Mountain & Valley Views",
+      "Private Events",
+      "Spring, Summer & Autumn",
+      "Parking",
+    ],
+    featured:   false,
+    priceRange: "$$$",
+    tags:       ["weddings", "outdoor-venue", "private-events", "scenic-views", "orchard"],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  EDUCATION & MUSEUMS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  {
+    id:   "16",
+    slug: "oak-glen-schoolhouse-museum",
+    name: "Oak Glen Schoolhouse Museum & Park",
+    shortDescription:
+      "Historic one-room schoolhouse turned community museum, with a park, playground, picnic tables, tennis court, walking path, and dog park open to all.",
+    description: `The Oak Glen Schoolhouse Museum is one of the community's most tangible connections to the past — a meticulously preserved one-room schoolhouse that once educated the children of Oak Glen's early farming families and now serves as a free museum open to the public. The building itself is the exhibit: original desks, chalkboards, and educational materials from the late 1800s and early 1900s give visitors an immediate sense of what daily life looked like at this elevation a century ago.
+
+The surrounding park is as much a draw as the museum itself, particularly for families with children. A playground, picnic tables, tennis court, and walking path make it an easy choice for a mid-day break between orchard visits, while the dog park makes it one of the few Oak Glen destinations that actively welcomes four-legged visitors off-leash.
+
+Private event reservations for sections of the park are available — the covered picnic area and lawn handle birthday parties, school groups, and family reunions well. For pricing and availability, the museum asks that interested parties call directly. It's a small gem that tends to be overlooked by first-time visitors and remembered fondly by those who take the time to stop.`,
+    category:     "Education & Museums",
+    categorySlug: "education",
+    rating:       4.5,
+    reviewCount:  93,
+    imageUrl:
+      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=75",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=75",
+    ],
+    location: "Oak Glen, CA",
+    address: {
+      street: "Oak Glen Road",
+      city:   "Oak Glen",
+      state:  "CA",
+      zip:    "92399",
+    },
+    phone:   "909-797-1691",
+    website: "https://oakglenschoolmuseum.com",
     hours: [
       { day: "Monday",    open: "",         close: "",         closed: true  },
       { day: "Tuesday",   open: "",         close: "",         closed: true  },
-      { day: "Wednesday", open: "8:00 AM",  close: "4:00 PM",  closed: false },
-      { day: "Thursday",  open: "8:00 AM",  close: "4:00 PM",  closed: false },
-      { day: "Friday",    open: "7:30 AM",  close: "5:00 PM",  closed: false },
-      { day: "Saturday",  open: "7:00 AM",  close: "5:30 PM",  closed: false },
-      { day: "Sunday",    open: "7:30 AM",  close: "4:30 PM",  closed: false },
+      { day: "Wednesday", open: "10:00 AM", close: "4:00 PM",  closed: false },
+      { day: "Thursday",  open: "10:00 AM", close: "4:00 PM",  closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "4:00 PM",  closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
     ],
     amenities: [
-      "Outdoor Seating",
-      "Hard Cider on Tap",
-      "Wood-Fired Pastries",
-      "Single-Origin Coffee",
-      "Gluten-Free Options",
-      "Vegan Options",
-      "Live Music (Saturdays)",
-      "Wi-Fi",
-      "Pet Friendly (Patio)",
-    ],
-    featured:   true,
-    priceRange: "$$",
-    tags:       ["coffee", "cider", "pastries", "brunch", "outdoor-seating"],
-  },
-
-  // ── 3. Gift Shop ───────────────────────────────────────────────────────────
-  {
-    id:   "3",
-    slug: "oak-tree-village-gifts",
-    name: "Oak Tree Village Gifts",
-    shortDescription:
-      "A curated artisan shop carrying handcrafted gifts, locally made preserves, mountain-inspired home goods, and one-of-a-kind oak wood pieces.",
-    description: `Oak Tree Village Gifts has anchored the heart of Oak Glen's village since 1988, operating out of a hand-built redwood cabin that co-owner Grace Whitmore and her late husband constructed over two summers. What started as a seasonal jam and preserve stand has expanded into a thoughtfully curated retail destination representing over 60 local artisans, farmers, and makers from the Inland Empire.
-
-The shop floor unfolds room by room: the front parlor holds estate-inspired home goods, beeswax candles poured in Redlands, and hand-thrown ceramic mugs glazed in earth tones that feel native to the mountain. The middle room is devoted entirely to edible goods—house-made apple butters in 12 varieties, local honey sourced from hives three miles up the ridge, wild-harvested pine-nut brittle, and seasonal wine jellies from nearby Temecula Valley.
-
-The back room, Grace's favorite, holds the one-of-a-kind pieces: live-edge oak serving boards finished with locally harvested beeswax, hand-forged ironwork from a Smith up in Big Bear, and a rotating selection of fine art prints by regional landscape painters. Gift wrapping in recycled kraft and beeswax-sealed ribbon is offered complimentary on every purchase.`,
-    category:     "Gift Shop",
-    categorySlug: "gift-shops",
-    rating:       4.7,
-    reviewCount:  241,
-    imageUrl:     "https://picsum.photos/seed/gift-shop-hero/1200/675",
-    galleryImages: [
-      "https://picsum.photos/seed/gift-g1/800/600",
-      "https://picsum.photos/seed/gift-g2/800/600",
-      "https://picsum.photos/seed/gift-g3/800/600",
-    ],
-    location: "Oak Glen, CA",
-    address: {
-      street: "38625 Oak Glen Road",
-      city:   "Oak Glen",
-      state:  "CA",
-      zip:    "92399",
-    },
-    phone:       "(909) 797-3388",
-    website:     "https://oaktreevillagegifts.com",
-    email:       "shop@oaktreevillagegifts.com",
-    established: 1988,
-    hours: [
-      { day: "Monday",    open: "10:00 AM", close: "5:00 PM",  closed: false },
-      { day: "Tuesday",   open: "10:00 AM", close: "5:00 PM",  closed: false },
-      { day: "Wednesday", open: "10:00 AM", close: "5:00 PM",  closed: false },
-      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM",  closed: false },
-      { day: "Friday",    open: "10:00 AM", close: "6:00 PM",  closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "6:30 PM",  closed: false },
-      { day: "Sunday",    open: "10:00 AM", close: "5:30 PM",  closed: false },
-    ],
-    amenities: [
-      "Local Artisan Goods",
-      "Gift Wrapping Available",
-      "Custom Baskets",
-      "Shipping Available",
-      "Accessible Entrance",
+      "Historic Schoolhouse Museum",
+      "Free Admission",
+      "Public Park",
+      "Playground",
+      "Picnic Tables",
+      "Tennis Court",
+      "Walking Path",
+      "Dog Park (Off-Leash)",
+      "Private Event Reservations",
+      "Restrooms",
       "Parking",
-      "Accepts Returns",
     ],
     featured:   false,
-    priceRange: "$$",
-    tags:       ["gifts", "artisan", "preserves", "home-goods", "handmade"],
-  },
-
-  // ── 4. Lodge ───────────────────────────────────────────────────────────────
-  {
-    id:   "4",
-    slug: "sage-and-summit-lodge",
-    name: "Sage & Summit Lodge",
-    shortDescription:
-      "A boutique mountain inn offering eight individually designed suites, a garden patio, wood-burning fireplaces, and views across the San Bernardino valley.",
-    description: `Sage & Summit Lodge occupies a restored 1930s mountain inn perched at the upper edge of Oak Glen, where the orchard rows give way to open chaparral and the valley spreads out 3,000 feet below. Eight individually designed suites each carry a different character: some warm and candlelit with antique quilts and cast-iron tubs; others spare and modern with Douglas fir floors, raw-edge headboards, and floor-to-ceiling windows framing the ridgeline.
-
-A communal stone terrace wraps the south face of the inn, set with teak loungers and a wood-burning outdoor fireplace that stays lit from October through March. Mornings begin with a house-made continental spread delivered to your door: a basket of fresh pastries from The Cider Press Café two roads over, local honey, stone-fruit preserves, and a French press of seasonal coffee.
-
-The innkeepers, David and Clara Nakashima, purchased the property in 2018 and spent four years restoring it with a focus on natural materials and minimal intervention—exposed adobe walls, hand-plastered ceilings, and hardware cast from locally salvaged bronze. Complimentary trail maps, binoculars, and a small lending library of regional natural history make the inn a natural base for exploring the surrounding San Bernardino National Forest.`,
-    category:     "Lodging",
-    categorySlug: "lodging",
-    rating:       4.9,
-    reviewCount:  98,
-    imageUrl:     "https://picsum.photos/seed/lodge-hero/1200/675",
-    galleryImages: [
-      "https://picsum.photos/seed/lodge-g1/800/600",
-      "https://picsum.photos/seed/lodge-g2/800/600",
-      "https://picsum.photos/seed/lodge-g3/800/600",
-    ],
-    location: "Oak Glen, CA",
-    address: {
-      street: "11580 Summit Ridge Road",
-      city:   "Oak Glen",
-      state:  "CA",
-      zip:    "92399",
-    },
-    phone:       "(909) 797-4499",
-    website:     "https://sageandsummitlodge.com",
-    email:       "reservations@sageandsummitlodge.com",
-    established: 2022, // re-opened after restoration
-    hours: [
-      { day: "Monday",    open: "8:00 AM",  close: "9:00 PM",  closed: false },
-      { day: "Tuesday",   open: "8:00 AM",  close: "9:00 PM",  closed: false },
-      { day: "Wednesday", open: "8:00 AM",  close: "9:00 PM",  closed: false },
-      { day: "Thursday",  open: "8:00 AM",  close: "9:00 PM",  closed: false },
-      { day: "Friday",    open: "8:00 AM",  close: "10:00 PM", closed: false },
-      { day: "Saturday",  open: "8:00 AM",  close: "10:00 PM", closed: false },
-      { day: "Sunday",    open: "8:00 AM",  close: "9:00 PM",  closed: false },
-    ],
-    amenities: [
-      "8 Boutique Suites",
-      "Wood-Burning Fireplaces",
-      "Valley Views",
-      "Continental Breakfast Included",
-      "Stone Garden Terrace",
-      "Outdoor Fireplace",
-      "Free Parking",
-      "Pet Friendly (select rooms)",
-      "Hiking Trail Access",
-      "Lending Library",
-      "No TV (by design)",
-      "Wi-Fi Available",
-    ],
-    featured:   true,
-    priceRange: "$$$",
-    tags:       ["lodging", "boutique", "romantic", "views", "nature", "fireplace"],
+    priceRange: "$",
+    tags:       ["museum", "free", "history", "park", "dog-friendly", "picnic"],
   },
 ];
 
@@ -291,46 +979,60 @@ The innkeepers, David and Clara Nakashima, purchased the property in 2018 and sp
 
 export const categories: Category[] = [
   {
-    slug:        "apple-orchards",
-    label:       "Apple Orchards",
-    description: "U-pick orchards, heritage varieties, and fresh-pressed cider straight from the mountain.",
-    imageUrl:    "https://picsum.photos/seed/cat-orchards/800/600",
-    count:       1,
-  },
-  {
-    slug:        "cafes",
-    label:       "Cafés & Cideries",
-    description: "Artisan roasters, wood-fired kitchens, and craft cideries tucked among the oaks.",
-    imageUrl:    "https://picsum.photos/seed/cat-cafes/800/600",
-    count:       1,
-  },
-  {
-    slug:        "gift-shops",
-    label:       "Gift Shops",
-    description: "Handcrafted goods, local preserves, and mountain-made artisan wares.",
-    imageUrl:    "https://picsum.photos/seed/cat-gifts/800/600",
-    count:       1,
-  },
-  {
-    slug:        "lodging",
-    label:       "Lodging",
-    description: "Boutique inns and mountain retreats for an overnight escape into the hills.",
-    imageUrl:    "https://picsum.photos/seed/cat-lodging/800/600",
-    count:       1,
-  },
-  {
     slug:        "farms",
-    label:       "Farms & Produce",
-    description: "Seasonal farm stands, pumpkin patches, and locally grown mountain produce.",
-    imageUrl:    "https://picsum.photos/seed/cat-farms/800/600",
-    count:       0,
+    label:       "Farms & Orchards",
+    description: "U-pick orchards, heritage apple varieties, regenerative farms, and fresh-pressed cider straight from the mountain.",
+    imageUrl:    "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800&q=75",
+    count:       6,
   },
   {
-    slug:        "activities",
-    label:       "Activities",
-    description: "Hayrides, nature walks, pick-your-own experiences, and seasonal events.",
-    imageUrl:    "https://picsum.photos/seed/cat-activities/800/600",
-    count:       0,
+    slug:        "restaurants",
+    label:       "Restaurants & Cafés",
+    description: "From fine dining and Sunday brunch to wood-fired pizza and specialty coffee with orchard views.",
+    imageUrl:    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=75",
+    count:       2,
+  },
+  {
+    slug:        "cider-houses",
+    label:       "Cider Houses",
+    description: "Hard cider crafted blossom to bottle from estate-grown Oak Glen apples — the valley's finest libation.",
+    imageUrl:    "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=75",
+    count:       1,
+  },
+  {
+    slug:        "shops",
+    label:       "Shops & Stores",
+    description: "Handcrafted gifts, local honey, artisan preserves, and mountain-made goods worth bringing home.",
+    imageUrl:    "https://images.unsplash.com/photo-1481437156560-3205f6a55735?w=800&q=75",
+    count:       1,
+  },
+  {
+    slug:        "accommodation",
+    label:       "Accommodation",
+    description: "Overnight stays for every kind of group — from historic B&Bs to mountain retreat and conference centers.",
+    imageUrl:    "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=75",
+    count:       2,
+  },
+  {
+    slug:        "entertainment",
+    label:       "Entertainment & Events",
+    description: "Living history farms, axe throwing, animal parks, trout ponds, dinner theater, and year-round family fun.",
+    imageUrl:    "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=75",
+    count:       2,
+  },
+  {
+    slug:        "weddings",
+    label:       "Weddings & Events",
+    description: "Stunning mountain venues with orchard views, apple trees, and natural beauty that does the decorating for you.",
+    imageUrl:    "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=75",
+    count:       1,
+  },
+  {
+    slug:        "education",
+    label:       "Education & Museums",
+    description: "Historic schoolhouses, living history programs, and parks that connect visitors to Oak Glen's agricultural roots.",
+    imageUrl:    "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=75",
+    count:       1,
   },
 ];
 

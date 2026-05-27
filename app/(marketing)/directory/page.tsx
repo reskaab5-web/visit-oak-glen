@@ -34,7 +34,13 @@ export const metadata: Metadata = {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function DirectoryPage() {
+export default async function DirectoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q }      = await searchParams;
+  const initialQuery = typeof q === "string" ? q.trim() : "";
   const totalCount = businesses.length;
 
   return (
@@ -49,7 +55,7 @@ export default function DirectoryPage() {
         {/* Background */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://picsum.photos/seed/directory-hero/1600/600"
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85"
             alt=""
             role="presentation"
             fill
@@ -87,7 +93,7 @@ export default function DirectoryPage() {
 
             <AnimatedHeroItem>
               <p className="mt-4 font-sans text-body-md sm:text-body-lg text-parchment/80 leading-relaxed">
-                {totalCount} curated listings spanning orchards, cafés, gift shops, and lodging in the San Bernardino Mountains.
+                {totalCount} curated listings spanning farms, orchards, cider houses, restaurants, and more in the San Bernardino Mountains.
               </p>
             </AnimatedHeroItem>
 
@@ -108,6 +114,7 @@ export default function DirectoryPage() {
         <DirectoryClient
           businesses={businesses}
           categories={categories}
+          initialQuery={initialQuery}
         />
       </div>
     </main>

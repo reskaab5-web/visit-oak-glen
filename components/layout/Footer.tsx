@@ -14,12 +14,13 @@ const NAV_COLUMNS = [
   {
     heading: "Directory",
     links: [
-      { label: "All Listings",    href: "/directory"                  },
-      { label: "Apple Orchards",  href: "/categories/apple-orchards"  },
-      { label: "Cafés & Cideries",href: "/categories/cafes"           },
-      { label: "Gift Shops",      href: "/categories/gift-shops"      },
-      { label: "Lodging",         href: "/categories/lodging"         },
-      { label: "Farms & Markets", href: "/categories/farms"           },
+      { label: "All Listings",       href: "/directory"                   },
+      { label: "Farms & Orchards",   href: "/categories/farms"            },
+      { label: "Cider Houses",       href: "/categories/cider-houses"     },
+      { label: "Restaurants & Cafés",href: "/categories/restaurants"      },
+      { label: "Entertainment",      href: "/categories/entertainment"    },
+      { label: "Accommodation",      href: "/categories/accommodation"    },
+      { label: "Weddings & Events",  href: "/categories/weddings"         },
     ],
   },
   {
