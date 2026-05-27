@@ -160,7 +160,7 @@ export const siteConfig: SiteConfig = {
   tagline:      "Discover the Heart of Apple Country",
   description:
     "A curated guide to Oak Glen's finest orchards, bakeries, farms, and artisan businesses tucked in the San Bernardino Mountains.",
-  url:          "https://visitoakglen.com",
+  url:          "https://directory.visitoakglen.com",
   contactEmail: "hello@visitoakglen.com",
 
   location: {
