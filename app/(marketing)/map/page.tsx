@@ -7,12 +7,12 @@
  */
 
 import type { Metadata }   from "next";
-import dynamic             from "next/dynamic";
-import { MapPin, Loader2 } from "lucide-react";
-import { businesses }    from "@/lib/data/mockData";
-import { siteConfig }    from "@/lib/config/site";
+import { MapPin }          from "lucide-react";
+import { businesses }      from "@/lib/data/mockData";
+import { siteConfig }      from "@/lib/config/site";
 import { buildWebPageSchema } from "@/lib/schema/builders";
-import { JsonLd }        from "@/components/seo/JsonLd";
+import { JsonLd }          from "@/components/seo/JsonLd";
+import { MapWrapper }      from "@/components/map/MapWrapper";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
@@ -25,25 +25,6 @@ export const metadata: Metadata = {
     description: `Find every business in ${siteConfig.location.name} on the map.`,
   },
 };
-
-// ─── Dynamic import — must be ssr:false for Leaflet ──────────────────────────
-
-const MapClient = dynamic(
-  () => import("@/components/map/MapClient").then((m) => m.MapClient),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] bg-surface gap-4">
-        <Loader2
-          size={32}
-          className="text-brand-primary-mid animate-spin"
-          aria-hidden="true"
-        />
-        <p className="font-sans text-body-md text-content-base">Loading map…</p>
-      </div>
-    ),
-  },
-);
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -103,7 +84,7 @@ export default function MapPage() {
       </div>
 
       {/* ── Map + sidebar ── */}
-      <MapClient businesses={businesses} />
+      <MapWrapper businesses={businesses} />
 
     </main>
     </>
