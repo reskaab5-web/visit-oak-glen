@@ -92,12 +92,25 @@ export interface SiteConfig {
   theme: SiteTheme;
 }
 
-// ─── Hex → "r, g, b" helper ───────────────────────────────────────────────────
+// ─── Hex → RGB helpers ────────────────────────────────────────────────────────
 
 /**
- * Converts a 6-digit hex colour to a comma-separated RGB string.
- * Used to keep --shadow-rgb and --*-rgb helpers in sync with hex values
- * automatically, so developers only set hex and never touch the RGB vars.
+ * Converts a 6-digit hex colour to space-separated RGB channels.
+ * Required format for Tailwind opacity modifier syntax (bg-brand-primary/40 etc.)
+ * e.g. "#1A2E1A" → "26 46 26"
+ */
+function hexToRgbChannels(hex: string): string {
+  const clean = hex.replace("#", "");
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+  return `${r} ${g} ${b}`;
+}
+
+/**
+ * Converts a 6-digit hex colour to comma-separated RGB string.
+ * Used only for legacy rgba() box-shadow helpers (--shadow-rgb, --*-rgb).
+ * e.g. "#2C2416" → "44, 36, 22"
  */
 function hexToRgb(hex: string): string {
   const clean = hex.replace("#", "");
@@ -116,26 +129,27 @@ function hexToRgb(hex: string): string {
  */
 export function buildThemeCssVars(theme: SiteTheme): Record<string, string> {
   return {
-    "--color-brand-primary":       theme.brandPrimary,
-    "--color-brand-primary-mid":   theme.brandPrimaryMid,
-    "--color-brand-primary-light": theme.brandPrimaryLight,
-    "--color-brand-primary-pale":  theme.brandPrimaryPale,
+    // Space-separated RGB channels — required for Tailwind opacity modifiers (/40, /75, etc.)
+    "--color-brand-primary":       hexToRgbChannels(theme.brandPrimary),
+    "--color-brand-primary-mid":   hexToRgbChannels(theme.brandPrimaryMid),
+    "--color-brand-primary-light": hexToRgbChannels(theme.brandPrimaryLight),
+    "--color-brand-primary-pale":  hexToRgbChannels(theme.brandPrimaryPale),
 
-    "--color-brand-accent":        theme.brandAccent,
-    "--color-brand-accent-dark":   theme.brandAccentDark,
-    "--color-brand-accent-pale":   theme.brandAccentPale,
+    "--color-brand-accent":        hexToRgbChannels(theme.brandAccent),
+    "--color-brand-accent-dark":   hexToRgbChannels(theme.brandAccentDark),
+    "--color-brand-accent-pale":   hexToRgbChannels(theme.brandAccentPale),
 
-    "--color-surface":             theme.surface,
-    "--color-surface-warm":        theme.surfaceWarm,
-    "--color-surface-muted":       theme.surfaceMuted,
+    "--color-surface":             hexToRgbChannels(theme.surface),
+    "--color-surface-warm":        hexToRgbChannels(theme.surfaceWarm),
+    "--color-surface-muted":       hexToRgbChannels(theme.surfaceMuted),
 
-    "--color-content-strong":      theme.contentStrong,
-    "--color-content-base":        theme.contentBase,
-    "--color-content-subtle":      theme.contentSubtle,
+    "--color-content-strong":      hexToRgbChannels(theme.contentStrong),
+    "--color-content-base":        hexToRgbChannels(theme.contentBase),
+    "--color-content-subtle":      hexToRgbChannels(theme.contentSubtle),
 
-    "--color-on-accent":           theme.onAccent,
+    "--color-on-accent":           hexToRgbChannels(theme.onAccent),
 
-    // RGB helpers for box-shadow rgba() — auto-derived, never edit manually
+    // Comma-separated RGB for legacy rgba() box-shadows — auto-derived
     "--shadow-rgb":               hexToRgb(theme.contentStrong),
     "--color-brand-accent-rgb":   hexToRgb(theme.brandAccent),
     "--color-brand-primary-rgb":  hexToRgb(theme.brandPrimary),
