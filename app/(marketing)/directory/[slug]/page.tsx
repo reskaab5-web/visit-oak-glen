@@ -26,7 +26,7 @@ import {
 // ─── Params type ──────────────────────────────────────────────────────────────
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // ─── Static generation ────────────────────────────────────────────────────────
@@ -38,7 +38,8 @@ export function generateStaticParams() {
 // ─── Dynamic metadata ─────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const business = getBusinessBySlug(params.slug);
+  const { slug } = await params;
+  const business = getBusinessBySlug(slug);
   if (!business) return { title: "Business Not Found — Oak Glen Directory" };
 
   return {
@@ -147,8 +148,9 @@ function HoursCard({ hours }: { hours: { day: string; open: string; close: strin
 
 // ─── Business Detail Page ─────────────────────────────────────────────────────
 
-export default function BusinessDetailPage({ params }: PageProps) {
-  const business = getBusinessBySlug(params.slug);
+export default async function BusinessDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const business = getBusinessBySlug(slug);
 
   if (!business) notFound();
 

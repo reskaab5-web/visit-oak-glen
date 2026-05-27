@@ -16,7 +16,7 @@ import {
 // ─── Params type ──────────────────────────────────────────────────────────────
 
 interface PageProps {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
 // ─── Static params — pre-render all known category slugs ─────────────────────
@@ -28,7 +28,8 @@ export function generateStaticParams() {
 // ─── Dynamic metadata ─────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const cat = getCategoryBySlug(params.category);
+  const { category } = await params;
+  const cat = getCategoryBySlug(category);
   if (!cat) return { title: "Category Not Found — Oak Glen Directory" };
 
   return {
@@ -52,13 +53,14 @@ const SORT_OPTIONS = [
 
 // ─── Category Page ────────────────────────────────────────────────────────────
 
-export default function CategoryPage({ params }: PageProps) {
-  const cat = getCategoryBySlug(params.category);
+export default async function CategoryPage({ params }: PageProps) {
+  const { category } = await params;
+  const cat = getCategoryBySlug(category);
 
   // 404 for unknown slugs
   if (!cat) notFound();
 
-  const businesses = getBusinessesByCategory(params.category);
+  const businesses = getBusinessesByCategory(category);
 
   return (
     <main>
@@ -192,7 +194,7 @@ export default function CategoryPage({ params }: PageProps) {
           </h2>
           <div className="flex flex-wrap gap-3">
             {categories
-              .filter((c) => c.slug !== params.category)
+              .filter((c) => c.slug !== category)
               .map((c) => (
                 <Link
                   key={c.slug}
