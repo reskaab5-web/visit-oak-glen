@@ -519,7 +519,7 @@ export default async function BusinessDetailPage({ params }: PageProps) {
                 <p className="font-serif text-heading-sm text-surface mb-2">
                   Ready to visit?
                 </p>
-                <p className="text-body-sm text-surface/70 mb-6 font-sans leading-relaxed">
+                <p className="text-body-sm text-surface/90 mb-6 font-sans leading-relaxed">
                   {business.shortDescription}
                 </p>
                 {business.website && (

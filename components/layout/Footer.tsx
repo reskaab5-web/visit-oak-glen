@@ -134,7 +134,7 @@ export function Footer() {
       <div className="border-t border-surface/8 mx-6 lg:mx-8" aria-hidden="true" />
 
       {/* ── Bottom bar ── */}
-      <div className="max-w-site mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-label text-surface/35">
+      <div className="max-w-site mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-label text-surface/60">
         <p>© {year} {siteConfig.name}. All rights reserved.</p>
         <div className="flex items-center gap-5">
           {[

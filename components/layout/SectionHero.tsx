@@ -46,7 +46,7 @@ interface SectionHeroProps {
 const OVERLAY: Record<OverlayVariant, string> = {
   light:  "from-black/20  via-black/30  to-black/55",
   dark:   "from-black/55  via-black/65  to-black/80",
-  forest: "from-brand-primary/35 via-brand-primary/58 to-brand-primary/88",
+  forest: "from-brand-primary/55 via-brand-primary/75 to-brand-primary/95",
 };
 
 // ─── SectionHero ─────────────────────────────────────────────────────────────
