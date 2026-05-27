@@ -15,17 +15,23 @@ import {
   AnimatedSectionReveal,
   AnimatedCounter,
 } from "@/components/motion/AnimatedHeroContent";
+import { siteConfig }           from "@/lib/config/site";
+import {
+  buildWebPageSchema,
+  buildOrganizationSchema,
+}                                from "@/lib/schema/builders";
+import { JsonLd }               from "@/components/seo/JsonLd";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title:       "Our Story — Oak Glen Directory",
+  title:       `Our Story — ${siteConfig.name}`,
   description:
     "Learn about Oak Glen, California — a small mountain agricultural community 4,800 feet up in the San Bernardino foothills, where apple orchards have been growing since the 1800s.",
+  alternates:  { canonical: "/about" },
   openGraph: {
-    title:       "Our Story — Oak Glen Directory",
+    title:       `Our Story — ${siteConfig.name}`,
     description: "The history and heart of California's apple country.",
-    images:      [{ url: "/images/og/about.jpg" }],
   },
 };
 
@@ -36,8 +42,8 @@ const SEASONS = [
     name:    "Spring",
     months:  "March – May",
     color:   "bg-[#eef4ea]",
-    accent:  "text-forest-mid",
-    border:  "border-forest-light/40",
+    accent:  "text-brand-primary-mid",
+    border:  "border-brand-primary-light/40",
     description:
       "The orchards shake off winter in a rush of pink and white blossoms. Apple Blossom Festival weekends fill Oak Glen Road with visitors coming to see the trees at their most spectacular. Lilacs bloom on the hillsides, the air is cool and clean, and the farms begin opening their doors after the quiet months.",
   },
@@ -45,8 +51,8 @@ const SEASONS = [
     name:    "Summer",
     months:  "June – August",
     color:   "bg-[#fdf8ef]",
-    accent:  "text-harvest-gold",
-    border:  "border-harvest-gold/30",
+    accent:  "text-brand-accent",
+    border:  "border-brand-accent/30",
     description:
       "The pace slows to something genuinely relaxed. Berry picking opens at several farms, hard cider flows at the tasting rooms, and the mountain air provides a reliable 15-degree reprieve from the valley heat. Summer evenings at Riley's Farm dinner theater and Stone Soup Farm's curated dining events are among the most coveted reservations in the community.",
   },
@@ -54,8 +60,8 @@ const SEASONS = [
     name:    "Autumn",
     months:  "September – November",
     color:   "bg-[#fdf1e8]",
-    accent:  "text-harvest-amber",
-    border:  "border-harvest-amber/30",
+    accent:  "text-brand-accent-dark",
+    border:  "border-brand-accent-dark/30",
     description:
       "Peak season. The apple harvest runs from late August through Thanksgiving, with u-pick orchards opening daily and the farm stores stocked with 30+ varieties you won't find in any grocery store. Corn mazes, wagon rides, pumpkin patches, cider donuts, hard cider tastings, and the Apple Butter Festival make October the most electric month on the mountain.",
   },
@@ -63,8 +69,8 @@ const SEASONS = [
     name:    "Winter",
     months:  "December – February",
     color:   "bg-[#eef1f6]",
-    accent:  "text-forest-deep",
-    border:  "border-forest-deep/20",
+    accent:  "text-brand-primary",
+    border:  "border-brand-primary/20",
     description:
       "A quieter, more intimate version of Oak Glen reveals itself in winter. Fewer crowds, wood smoke drifting from chimneys, and the occasional dusting of snow on the ridgeline. Riley's Farm and Oak Tree Mountain run holiday programming, the Steak House fills with locals, and the retreat centers book up with groups seeking genuine mountain solitude.",
   },
@@ -99,6 +105,16 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
+    <>
+      <JsonLd data={[
+        buildWebPageSchema(
+          siteConfig,
+          "/about",
+          `Our Story — ${siteConfig.name}`,
+          `Learn about ${siteConfig.location.name}, ${siteConfig.location.state} — a small mountain agricultural community ${siteConfig.location.elevation} up in the San Bernardino foothills, where apple orchards have been growing since the 1800s.`,
+        ),
+        buildOrganizationSchema(siteConfig),
+      ]} />
     <main>
 
       {/* ════════════════════════════════════════════════════════════════
@@ -120,35 +136,35 @@ export default function AboutPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/30 via-forest-deep/58 to-forest-deep/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/30 via-brand-primary/58 to-brand-primary/85" />
         </div>
 
         <AnimatedHeroContent className="relative z-10 max-w-site mx-auto w-full px-6 lg:px-8 py-hero flex flex-col items-center text-center">
           <AnimatedHeroItem>
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-4 h-px bg-harvest-gold" aria-hidden="true" />
-              <span className="text-label text-harvest-gold uppercase tracking-[0.22em]">
+              <div className="w-4 h-px bg-brand-accent" aria-hidden="true" />
+              <span className="text-label text-brand-accent uppercase tracking-[0.22em]">
                 Our Story
               </span>
-              <div className="w-4 h-px bg-harvest-gold" aria-hidden="true" />
+              <div className="w-4 h-px bg-brand-accent" aria-hidden="true" />
             </div>
           </AnimatedHeroItem>
 
           <AnimatedHeroItem>
-            <h1 className="font-serif text-display-lg md:text-display-xl lg:text-display-2xl text-parchment leading-[1.07] max-w-4xl">
+            <h1 className="font-serif text-display-lg md:text-display-xl lg:text-display-2xl text-surface leading-[1.07] max-w-4xl">
               A Mountain Community<br className="hidden sm:block" /> Built on the Harvest
             </h1>
           </AnimatedHeroItem>
 
           <AnimatedHeroItem>
-            <p className="mt-6 text-body-lg text-parchment/80 max-w-2xl leading-relaxed">
+            <p className="mt-6 text-body-lg text-surface/80 max-w-2xl leading-relaxed">
               Tucked into the San Bernardino foothills at 4,800 feet, Oak Glen has been growing apples — and welcoming the people who come for them — since the 1800s.
             </p>
           </AnimatedHeroItem>
         </AnimatedHeroContent>
 
         <div
-          className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-parchment to-transparent pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-surface to-transparent pointer-events-none"
           aria-hidden="true"
         />
       </section>
@@ -157,7 +173,7 @@ export default function AboutPage() {
           SECTION 2 — Origin Story
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
-      <section className="py-section px-6 lg:px-8 bg-parchment" aria-labelledby="story-heading">
+      <section className="py-section px-6 lg:px-8 bg-surface" aria-labelledby="story-heading">
         <div className="max-w-site mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
@@ -173,11 +189,11 @@ export default function AboutPage() {
               />
               {/* Inset label */}
               <div className="absolute bottom-5 left-5 right-5">
-                <div className="inline-block bg-forest-deep/85 backdrop-blur-sm rounded-lg px-4 py-3">
-                  <p className="font-sans text-label text-harvest-gold uppercase tracking-widest">
+                <div className="inline-block bg-brand-primary/85 backdrop-blur-sm rounded-lg px-4 py-3">
+                  <p className="font-sans text-label text-brand-accent uppercase tracking-widest">
                     Snow-Line Orchards
                   </p>
-                  <p className="font-serif text-body-sm text-parchment/90 mt-0.5">
+                  <p className="font-serif text-body-sm text-surface/90 mt-0.5">
                     Original Apple Shed, est. 1898
                   </p>
                 </div>
@@ -186,13 +202,13 @@ export default function AboutPage() {
 
             {/* Copy */}
             <div className="order-1 lg:order-2">
-              <p className="text-label text-forest-mid uppercase tracking-widest mb-3">
+              <p className="text-label text-brand-primary-mid uppercase tracking-widest mb-3">
                 Since the 1800s
               </p>
-              <h2 id="story-heading" className="font-serif text-heading-xl text-oak-charcoal mb-6 leading-snug">
+              <h2 id="story-heading" className="font-serif text-heading-xl text-content-strong mb-6 leading-snug">
                 California's apple country, hiding in plain sight.
               </h2>
-              <div className="space-y-5 font-sans text-body-md text-oak-stone leading-relaxed">
+              <div className="space-y-5 font-sans text-body-md text-content-base leading-relaxed">
                 <p>
                   Oak Glen sits at the end of a winding road in the San Bernardino Mountains, roughly 90 minutes east of Los Angeles. Most people from the Inland Empire have heard of it. Far fewer have been. And the ones who've stumbled up that road on a October afternoon and watched the apple trees turn gold tend to come back every year for the rest of their lives.
                 </p>
@@ -217,18 +233,18 @@ export default function AboutPage() {
           SECTION 3 — Stats banner
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
-      <section className="py-16 px-6 lg:px-8 bg-forest-deep" aria-label="Oak Glen by the numbers">
+      <section className="py-16 px-6 lg:px-8 bg-brand-primary" aria-label="Oak Glen by the numbers">
         <div className="max-w-site mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="font-serif text-heading-xl text-harvest-gold">1800s</p>
-              <p className="text-label text-parchment/60 uppercase tracking-widest mt-2">
+              <p className="font-serif text-heading-xl text-brand-accent">1800s</p>
+              <p className="text-label text-surface/60 uppercase tracking-widest mt-2">
                 First orchards planted
               </p>
             </div>
             <div>
-              <p className="font-serif text-heading-xl text-harvest-gold">4,800<span className="text-heading-md"> ft</span></p>
-              <p className="text-label text-parchment/60 uppercase tracking-widest mt-2">
+              <p className="font-serif text-heading-xl text-brand-accent">4,800<span className="text-heading-md"> ft</span></p>
+              <p className="text-label text-surface/60 uppercase tracking-widest mt-2">
                 Elevation above sea level
               </p>
             </div>
@@ -236,9 +252,9 @@ export default function AboutPage() {
               <AnimatedCounter
                 target={30}
                 suffix="+"
-                className="font-serif text-heading-xl text-harvest-gold"
+                className="font-serif text-heading-xl text-brand-accent"
               />
-              <p className="text-label text-parchment/60 uppercase tracking-widest mt-2">
+              <p className="text-label text-surface/60 uppercase tracking-widest mt-2">
                 Apple varieties grown
               </p>
             </div>
@@ -246,9 +262,9 @@ export default function AboutPage() {
               <AnimatedCounter
                 target={60}
                 suffix="+"
-                className="font-serif text-heading-xl text-harvest-gold"
+                className="font-serif text-heading-xl text-brand-accent"
               />
-              <p className="text-label text-parchment/60 uppercase tracking-widest mt-2">
+              <p className="text-label text-surface/60 uppercase tracking-widest mt-2">
                 Local businesses
               </p>
             </div>
@@ -261,14 +277,14 @@ export default function AboutPage() {
           SECTION 4 — The Four Seasons
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
-      <section className="py-section px-6 lg:px-8 bg-parchment-warm" aria-labelledby="seasons-heading">
+      <section className="py-section px-6 lg:px-8 bg-surface-warm" aria-labelledby="seasons-heading">
         <div className="max-w-site mx-auto">
 
           <div className="text-center mb-12">
-            <p className="text-label text-forest-mid uppercase tracking-widest mb-3">
+            <p className="text-label text-brand-primary-mid uppercase tracking-widest mb-3">
               Plan your visit
             </p>
-            <h2 id="seasons-heading" className="font-serif text-heading-xl text-oak-charcoal">
+            <h2 id="seasons-heading" className="font-serif text-heading-xl text-content-strong">
               Oak Glen through the year
             </h2>
           </div>
@@ -283,11 +299,11 @@ export default function AboutPage() {
                   <p className={`font-sans text-label uppercase tracking-widest font-[600] ${season.accent}`}>
                     {season.name}
                   </p>
-                  <p className="font-sans text-[11px] text-oak-fog mt-0.5 uppercase tracking-wider">
+                  <p className="font-sans text-[11px] text-content-subtle mt-0.5 uppercase tracking-wider">
                     {season.months}
                   </p>
                 </div>
-                <p className="font-sans text-body-sm text-oak-stone leading-relaxed">
+                <p className="font-sans text-body-sm text-content-base leading-relaxed">
                   {season.description}
                 </p>
               </div>
@@ -301,14 +317,14 @@ export default function AboutPage() {
           SECTION 5 — What makes Oak Glen different
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
-      <section className="py-section px-6 lg:px-8 bg-parchment" aria-labelledby="values-heading">
+      <section className="py-section px-6 lg:px-8 bg-surface" aria-labelledby="values-heading">
         <div className="max-w-site mx-auto">
 
           <div className="max-w-2xl mb-12">
-            <p className="text-label text-forest-mid uppercase tracking-widest mb-3">
+            <p className="text-label text-brand-primary-mid uppercase tracking-widest mb-3">
               Why it matters
             </p>
-            <h2 id="values-heading" className="font-serif text-heading-xl text-oak-charcoal leading-snug">
+            <h2 id="values-heading" className="font-serif text-heading-xl text-content-strong leading-snug">
               What separates Oak Glen from anywhere else.
             </h2>
           </div>
@@ -316,12 +332,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUES.map(({ icon: Icon, label, body }) => (
               <div key={label} className="flex flex-col gap-4">
-                <div className="w-11 h-11 rounded-full bg-forest-pale flex items-center justify-center flex-shrink-0">
-                  <Icon size={20} className="text-forest-mid" strokeWidth={1.5} aria-hidden="true" />
+                <div className="w-11 h-11 rounded-full bg-brand-primary-pale flex items-center justify-center flex-shrink-0">
+                  <Icon size={20} className="text-brand-primary-mid" strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-body-lg text-oak-charcoal mb-2">{label}</h3>
-                  <p className="font-sans text-body-sm text-oak-stone leading-relaxed">{body}</p>
+                  <h3 className="font-serif text-body-lg text-content-strong mb-2">{label}</h3>
+                  <p className="font-sans text-body-sm text-content-base leading-relaxed">{body}</p>
                 </div>
               </div>
             ))}
@@ -346,11 +362,11 @@ export default function AboutPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-forest-deep/78" />
+          <div className="absolute inset-0 bg-brand-primary/78" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <p
-            className="font-serif text-display-lg sm:text-heading-xl lg:text-display-lg text-parchment leading-snug"
+            className="font-serif text-display-lg sm:text-heading-xl lg:text-display-lg text-surface leading-snug"
             aria-label="Pull quote: Just 90 minutes from Los Angeles, Oak Glen is the kind of place that makes you wonder why you don't come more often."
           >
             &ldquo;Just 90 minutes from Los Angeles, Oak Glen is the kind of place that makes you wonder why you don&rsquo;t come more often.&rdquo;
@@ -363,28 +379,28 @@ export default function AboutPage() {
           SECTION 7 — CTA
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
-      <section className="py-section px-6 lg:px-8 bg-parchment-warm border-t border-parchment-muted" aria-labelledby="about-cta-heading">
+      <section className="py-section px-6 lg:px-8 bg-surface-warm border-t border-surface-muted" aria-labelledby="about-cta-heading">
         <div className="max-w-site mx-auto flex flex-col items-center text-center gap-6">
-          <p className="text-label text-forest-mid uppercase tracking-widest">
+          <p className="text-label text-brand-primary-mid uppercase tracking-widest">
             Ready to explore?
           </p>
-          <h2 id="about-cta-heading" className="font-serif text-heading-xl text-oak-charcoal max-w-xl leading-snug">
+          <h2 id="about-cta-heading" className="font-serif text-heading-xl text-content-strong max-w-xl leading-snug">
             Find your perfect stop in Oak Glen.
           </h2>
-          <p className="font-sans text-body-md text-oak-stone max-w-lg leading-relaxed">
+          <p className="font-sans text-body-md text-content-base max-w-lg leading-relaxed">
             Browse all 16 businesses across farms, orchards, cider houses, restaurants, accommodation, and more.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-2">
             <Link
               href="/directory"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-forest-deep hover:bg-forest-mid text-label text-parchment uppercase tracking-widest transition-all duration-200 hover:-translate-y-px shadow-card"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-brand-primary hover:bg-brand-primary-mid text-label text-surface uppercase tracking-widest transition-all duration-200 hover:-translate-y-px shadow-card"
             >
               Browse the Directory
               <ArrowRight size={15} aria-hidden="true" />
             </Link>
             <Link
               href="/categories/farms"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md border border-forest-light hover:border-forest-mid text-label text-forest-mid hover:text-forest-deep uppercase tracking-widest transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md border border-brand-primary-light hover:border-brand-primary-mid text-label text-brand-primary-mid hover:text-brand-primary uppercase tracking-widest transition-all duration-200"
             >
               Start with Farms & Orchards
             </Link>
@@ -394,5 +410,6 @@ export default function AboutPage() {
       </AnimatedSectionReveal>
 
     </main>
+    </>
   );
 }

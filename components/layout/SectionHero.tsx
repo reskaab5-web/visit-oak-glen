@@ -46,7 +46,7 @@ interface SectionHeroProps {
 const OVERLAY: Record<OverlayVariant, string> = {
   light:  "from-black/20  via-black/30  to-black/55",
   dark:   "from-black/55  via-black/65  to-black/80",
-  forest: "from-forest-deep/35 via-forest-deep/58 to-forest-deep/88",
+  forest: "from-brand-primary/35 via-brand-primary/58 to-brand-primary/88",
 };
 
 // ─── SectionHero ─────────────────────────────────────────────────────────────
@@ -85,7 +85,7 @@ export function SectionHero({
           />
         ) : (
           /* Fallback solid brand color when no image is supplied */
-          <div className="absolute inset-0 bg-forest-deep" />
+          <div className="absolute inset-0 bg-brand-primary" />
         )}
 
         {/* Gradient overlay for legibility */}
@@ -112,11 +112,11 @@ export function SectionHero({
           >
             <MapPin
               size={13}
-              className="text-harvest-gold flex-shrink-0"
+              className="text-brand-accent flex-shrink-0"
               strokeWidth={2}
               aria-hidden="true"
             />
-            <span className="text-label text-harvest-gold uppercase tracking-[0.2em]">
+            <span className="text-label text-brand-accent uppercase tracking-[0.2em]">
               {eyebrow}
             </span>
           </div>
@@ -126,7 +126,7 @@ export function SectionHero({
         <h1
           className={[
             "font-serif text-display-lg md:text-display-xl lg:text-display-2xl",
-            "text-parchment leading-[1.07]",
+            "text-surface leading-[1.07]",
             isCenter ? "max-w-4xl" : "max-w-3xl",
           ].join(" ")}
         >
@@ -137,7 +137,7 @@ export function SectionHero({
         {subtitle && (
           <p
             className={[
-              "mt-6 text-body-lg text-parchment/80 leading-relaxed",
+              "mt-6 text-body-lg text-surface/80 leading-relaxed",
               isCenter ? "max-w-2xl" : "max-w-xl",
             ].join(" ")}
           >
@@ -156,7 +156,7 @@ export function SectionHero({
             {primaryCta && (
               <Link
                 href={primaryCta.href}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-harvest-gold hover:bg-harvest-amber text-label text-earth-bark uppercase tracking-widest transition-all duration-slow ease-premium shadow-card hover:shadow-card-hover hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-harvest-gold focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-brand-accent hover:bg-brand-accent-dark text-label text-on-accent uppercase tracking-widest transition-all duration-slow ease-premium shadow-card hover:shadow-card-hover hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               >
                 {primaryCta.label}
                 <ArrowRight size={15} aria-hidden="true" />
@@ -166,7 +166,7 @@ export function SectionHero({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md border border-parchment/45 hover:border-parchment/85 text-label text-parchment uppercase tracking-widest backdrop-blur-sm hover:bg-parchment/10 transition-all duration-slow ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-parchment/60"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md border border-surface/45 hover:border-surface/85 text-label text-surface uppercase tracking-widest backdrop-blur-sm hover:bg-surface/10 transition-all duration-slow ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-surface/60"
               >
                 {secondaryCta.label}
               </Link>
@@ -178,7 +178,7 @@ export function SectionHero({
       {/* ── Bottom fade into page ── */}
       {fadeBottom && (
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-parchment to-transparent pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface to-transparent pointer-events-none"
           aria-hidden="true"
         />
       )}

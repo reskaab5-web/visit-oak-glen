@@ -12,6 +12,13 @@ import {
   getCategoryBySlug,
   getBusinessesByCategory,
 } from "@/lib/data/mockData";
+import { siteConfig } from "@/lib/config/site";
+import {
+  buildCollectionPageSchema,
+  buildItemListSchema,
+  buildBreadcrumbSchema,
+} from "@/lib/schema/builders";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 // ─── Params type ──────────────────────────────────────────────────────────────
 
@@ -30,13 +37,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category } = await params;
   const cat = getCategoryBySlug(category);
-  if (!cat) return { title: "Category Not Found — Oak Glen Directory" };
+  if (!cat) return { title: `Category Not Found — ${siteConfig.name}` };
 
   return {
-    title:       `${cat.label} in Oak Glen, CA — Oak Glen Directory`,
+    title:       `${cat.label} in ${siteConfig.location.name}, ${siteConfig.location.state} — ${siteConfig.name}`,
     description: cat.description,
+    alternates:  { canonical: `/categories/${category}` },
     openGraph: {
-      title:       `${cat.label} — Oak Glen Directory`,
+      title:       `${cat.label} — ${siteConfig.name}`,
       description: cat.description,
       images:      [{ url: cat.imageUrl }],
     },
@@ -63,12 +71,27 @@ export default async function CategoryPage({ params }: PageProps) {
   const businesses = getBusinessesByCategory(category);
 
   return (
+    <>
+      <JsonLd data={[
+        buildCollectionPageSchema(
+          siteConfig,
+          `/categories/${category}`,
+          `${cat.label} in ${siteConfig.location.name}, ${siteConfig.location.state}`,
+          cat.description,
+        ),
+        buildItemListSchema(businesses, `${siteConfig.url}/categories/${category}`, siteConfig),
+        buildBreadcrumbSchema([
+          { name: "Home",       item: siteConfig.url },
+          { name: "Directory",  item: `${siteConfig.url}/directory` },
+          { name: cat.label,    item: `${siteConfig.url}/categories/${category}` },
+        ]),
+      ]} />
     <main>
       {/* ════════════════════════════════════════════════════════════════
           HERO — SectionHero with category context
       ════════════════════════════════════════════════════════════════ */}
       <SectionHero
-        eyebrow="Oak Glen Directory"
+        eyebrow={siteConfig.name}
         title={cat.label}
         subtitle={cat.description}
         backgroundImageUrl={cat.imageUrl}
@@ -81,46 +104,46 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════════
           BREADCRUMB + TOOLBAR
       ════════════════════════════════════════════════════════════════ */}
-      <div className="bg-parchment border-b border-parchment-muted sticky top-[64px] lg:top-[80px] z-40">
+      <div className="bg-surface border-b border-surface-muted sticky top-[64px] lg:top-[80px] z-40">
         <div className="max-w-site mx-auto px-6 lg:px-8">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 py-3 text-body-sm" aria-label="Breadcrumb">
             <Link
               href="/"
-              className="text-oak-fog hover:text-forest-mid transition-colors duration-200"
+              className="text-content-subtle hover:text-brand-primary-mid transition-colors duration-200"
             >
               Home
             </Link>
-            <ChevronRight size={13} className="text-parchment-muted flex-shrink-0" aria-hidden="true" />
+            <ChevronRight size={13} className="text-surface-muted flex-shrink-0" aria-hidden="true" />
             <Link
               href="/directory"
-              className="text-oak-fog hover:text-forest-mid transition-colors duration-200"
+              className="text-content-subtle hover:text-brand-primary-mid transition-colors duration-200"
             >
               Directory
             </Link>
-            <ChevronRight size={13} className="text-parchment-muted flex-shrink-0" aria-hidden="true" />
-            <span className="text-oak-charcoal font-[500]" aria-current="page">
+            <ChevronRight size={13} className="text-surface-muted flex-shrink-0" aria-hidden="true" />
+            <span className="text-content-strong font-[500]" aria-current="page">
               {cat.label}
             </span>
           </nav>
 
           {/* Toolbar — count + sort */}
-          <div className="flex items-center justify-between py-3 border-t border-parchment-muted">
-            <div className="flex items-center gap-2 text-body-sm text-oak-stone">
-              <LayoutGrid size={15} className="text-oak-fog" aria-hidden="true" />
+          <div className="flex items-center justify-between py-3 border-t border-surface-muted">
+            <div className="flex items-center gap-2 text-body-sm text-content-base">
+              <LayoutGrid size={15} className="text-content-subtle" aria-hidden="true" />
               <span>
-                <strong className="text-oak-charcoal font-[500]">{businesses.length}</strong>{" "}
+                <strong className="text-content-strong font-[500]">{businesses.length}</strong>{" "}
                 {businesses.length === 1 ? "listing" : "listings"} in {cat.label}
               </span>
             </div>
 
             {/* Sort selector (future: wire to state/URL params) */}
-            <label className="flex items-center gap-2 text-body-sm text-oak-stone">
+            <label className="flex items-center gap-2 text-body-sm text-content-base">
               <span className="hidden sm:inline">Sort by</span>
               <select
                 aria-label="Sort listings"
-                className="bg-parchment-warm border border-parchment-muted rounded-md px-3 py-1.5 text-body-sm text-oak-charcoal focus:outline-none focus:ring-2 focus:ring-harvest-gold cursor-pointer"
+                className="bg-surface-warm border border-surface-muted rounded-md px-3 py-1.5 text-body-sm text-content-strong focus:outline-none focus:ring-2 focus:ring-brand-accent cursor-pointer"
                 defaultValue="rating"
               >
                 {SORT_OPTIONS.map((opt) => (
@@ -139,7 +162,7 @@ export default async function CategoryPage({ params }: PageProps) {
       ════════════════════════════════════════════════════════════════ */}
       <AnimatedSectionReveal>
       <section
-        className="py-section px-6 lg:px-8 bg-parchment"
+        className="py-section px-6 lg:px-8 bg-surface"
         aria-label={`${cat.label} listings`}
       >
         <div className="max-w-site mx-auto">
@@ -156,6 +179,7 @@ export default async function CategoryPage({ params }: PageProps) {
                     location={business.location}
                     slug={business.slug}
                     featured={business.featured}
+                    tier={business.tier}
                   />
                 </AnimatedCard>
               ))}
@@ -163,18 +187,18 @@ export default async function CategoryPage({ params }: PageProps) {
           ) : (
             /* ── Empty state ── */
             <div className="flex flex-col items-center justify-center py-24 text-center">
-              <div className="w-16 h-16 rounded-full bg-forest-pale flex items-center justify-center mb-5">
-                <AlertCircle size={26} className="text-forest-mid" strokeWidth={1.5} aria-hidden="true" />
+              <div className="w-16 h-16 rounded-full bg-brand-primary-pale flex items-center justify-center mb-5">
+                <AlertCircle size={26} className="text-brand-primary-mid" strokeWidth={1.5} aria-hidden="true" />
               </div>
-              <h2 className="font-serif text-heading-md text-oak-charcoal mb-3">
+              <h2 className="font-serif text-heading-md text-content-strong mb-3">
                 No listings yet
               </h2>
-              <p className="text-body-md text-oak-stone max-w-sm leading-relaxed mb-8">
+              <p className="text-body-md text-content-base max-w-sm leading-relaxed mb-8">
                 We haven't added any {cat.label.toLowerCase()} to the directory just yet. Check back soon — we're growing!
               </p>
               <Link
                 href="/directory"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-forest-deep hover:bg-forest-mid text-label text-parchment uppercase tracking-widest transition-all duration-200"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-brand-primary hover:bg-brand-primary-mid text-label text-surface uppercase tracking-widest transition-all duration-200"
               >
                 Browse all listings
               </Link>
@@ -187,9 +211,9 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* ════════════════════════════════════════════════════════════════
           RELATED CATEGORIES
       ════════════════════════════════════════════════════════════════ */}
-      <section className="py-section px-6 lg:px-8 bg-parchment-warm border-t border-parchment-muted" aria-labelledby="other-cat-heading">
+      <section className="py-section px-6 lg:px-8 bg-surface-warm border-t border-surface-muted" aria-labelledby="other-cat-heading">
         <div className="max-w-site mx-auto">
-          <h2 id="other-cat-heading" className="font-serif text-heading-md text-oak-charcoal mb-6">
+          <h2 id="other-cat-heading" className="font-serif text-heading-md text-content-strong mb-6">
             Explore other categories
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -199,7 +223,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 <Link
                   key={c.slug}
                   href={`/categories/${c.slug}`}
-                  className="inline-flex items-center px-5 py-2.5 rounded-md bg-parchment border border-parchment-muted hover:border-forest-light hover:shadow-card text-body-sm text-oak-stone hover:text-forest-mid transition-all duration-200"
+                  className="inline-flex items-center px-5 py-2.5 rounded-md bg-surface border border-surface-muted hover:border-brand-primary-light hover:shadow-card text-body-sm text-content-base hover:text-brand-primary-mid transition-all duration-200"
                 >
                   {c.label}
                 </Link>
@@ -208,5 +232,6 @@ export default async function CategoryPage({ params }: PageProps) {
         </div>
       </section>
     </main>
+    </>
   );
 }

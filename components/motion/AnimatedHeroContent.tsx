@@ -72,6 +72,8 @@ const itemVariants = {
 interface HeroContentProps {
   children:   ReactNode;
   className?: string;
+  /** Optional delay in seconds before this element begins animating */
+  delay?:     number;
 }
 
 /**
@@ -97,9 +99,15 @@ export function AnimatedHeroContent({ children, className }: HeroContentProps) {
  * Each discrete piece of hero content: eyebrow, title, subtitle, CTA row, search.
  * Renders as a `motion.div` driven by the parent container's stagger.
  */
-export function AnimatedHeroItem({ children, className }: HeroContentProps) {
+export function AnimatedHeroItem({ children, className, delay }: HeroContentProps) {
   return (
-    <motion.div variants={itemVariants} className={className}>
+    <motion.div
+      variants={itemVariants}
+      className={className}
+      {...(delay !== undefined && {
+        transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay },
+      })}
+    >
       {children}
     </motion.div>
   );
@@ -120,13 +128,13 @@ export function AnimatedHeroItem({ children, className }: HeroContentProps) {
  * </AnimatedSectionReveal>
  * ```
  */
-export function AnimatedSectionReveal({ children, className }: HeroContentProps) {
+export function AnimatedSectionReveal({ children, className, delay }: HeroContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: delay ?? 0 }}
       className={className}
     >
       {children}

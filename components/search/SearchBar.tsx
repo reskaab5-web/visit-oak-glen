@@ -47,9 +47,9 @@ export function SearchBar({
       aria-label="Search Oak Glen businesses"
       className={[
         "flex items-center w-full overflow-hidden",
-        "bg-parchment border border-parchment-muted",
+        "bg-surface border border-surface-muted",
         "shadow-card focus-within:shadow-card-hover",
-        "focus-within:border-forest-light",
+        "focus-within:border-brand-primary-light",
         "transition-all duration-slow ease-premium",
         isHero ? "rounded-xl" : "rounded-md",
       ].join(" ")}
@@ -57,7 +57,7 @@ export function SearchBar({
       {/* Search icon */}
       <div
         className={[
-          "flex items-center justify-center flex-shrink-0 text-oak-fog",
+          "flex items-center justify-center flex-shrink-0 text-content-subtle",
           isHero ? "pl-5 pr-2" : "pl-4 pr-2",
         ].join(" ")}
         aria-hidden="true"
@@ -75,7 +75,7 @@ export function SearchBar({
         aria-label="Search query"
         autoComplete="off"
         className={[
-          "flex-1 bg-transparent font-sans text-oak-charcoal placeholder:text-oak-fog",
+          "flex-1 bg-transparent font-sans text-content-strong placeholder:text-content-subtle",
           "focus:outline-none",
           isHero ? "text-body-lg py-4 px-2" : "text-body-md py-2.5 px-2",
         ].join(" ")}
@@ -87,7 +87,7 @@ export function SearchBar({
           type="button"
           onClick={handleClear}
           aria-label="Clear search"
-          className="flex-shrink-0 p-2 text-oak-fog hover:text-oak-stone transition-colors duration-200"
+          className="flex-shrink-0 p-2 text-content-subtle hover:text-content-base transition-colors duration-200"
         >
           <X size={16} aria-hidden="true" />
         </button>
@@ -99,9 +99,9 @@ export function SearchBar({
         aria-label="Submit search"
         className={[
           "flex-shrink-0 font-sans text-label uppercase tracking-widest",
-          "bg-forest-deep hover:bg-forest-mid text-parchment",
+          "bg-brand-primary hover:bg-brand-primary-mid text-surface",
           "transition-all duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-harvest-gold focus-visible:ring-inset",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-inset",
           isHero
             ? "px-7 py-4 text-[11px] rounded-r-xl"
             : "px-5 py-2.5 text-[10px] rounded-r-md",

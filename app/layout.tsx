@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import type React from "react";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { siteConfig, buildThemeCssVars } from "@/lib/config/site";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 
 const playfair = Playfair_Display({
   subsets:   ["latin"],
-  variable:  "--font-playfair",
+  variable:  "--font-serif",
   display:   "swap",
   weight:    ["400", "500", "600", "700"],
 });
 
 const dmSans = DM_Sans({
   subsets:   ["latin"],
-  variable:  "--font-dm-sans",
+  variable:  "--font-sans",
   display:   "swap",
   weight:    ["400", "500", "600"],
 });
@@ -21,15 +23,17 @@ const dmSans = DM_Sans({
 // ─── Root metadata ────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://visitoakglen.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default:  "Oak Glen Directory — Discover the Heart of Apple Country",
-    template: "%s — Oak Glen Directory",
+    default:  `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s — ${siteConfig.name}`,
   },
-  description:
-    "A curated guide to Oak Glen's finest orchards, bakeries, farms, and artisan businesses tucked in the San Bernardino Mountains.",
+  description: siteConfig.description,
+  manifest: "/site.webmanifest",
+  // Colors the browser chrome (address bar) on mobile — matches the nav bar
+  themeColor: siteConfig.theme.brandPrimary,
   openGraph: {
-    siteName: "Oak Glen Directory",
+    siteName: siteConfig.name,
     locale:   "en_US",
     type:     "website",
   },
@@ -46,8 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body className="font-sans bg-parchment text-oak-charcoal antialiased">
+    <html
+      lang="en"
+      className={`${playfair.variable} ${dmSans.variable}`}
+      style={buildThemeCssVars(siteConfig.theme) as React.CSSProperties}
+    >
+      <body className="font-sans bg-surface text-content-strong antialiased">
         {children}
       </body>
     </html>

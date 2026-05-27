@@ -7,6 +7,7 @@ import {
   Facebook,
   ArrowUpRight,
 } from "lucide-react";
+import { siteConfig } from "@/lib/config/site";
 
 // ─── Nav columns ──────────────────────────────────────────────────────────────
 
@@ -26,7 +27,7 @@ const NAV_COLUMNS = [
   {
     heading: "Explore",
     links: [
-      { label: "About Oak Glen",  href: "/about"        },
+      { label: `About ${siteConfig.location.name}`, href: "/about" },
       { label: "Events",          href: "/events"       },
       { label: "Plan Your Visit", href: "/plan"         },
       { label: "Getting Here",    href: "/getting-here" },
@@ -50,7 +51,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-oak-charcoal text-parchment/70" aria-label="Site footer">
+    <footer className="bg-content-strong text-surface/70" aria-label="Site footer">
 
       {/* ── Upper block ── */}
       <div className="max-w-site mx-auto px-6 lg:px-8 pt-16 pb-12">
@@ -61,28 +62,28 @@ export function Footer() {
             {/* Logo mark */}
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 mb-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-harvest-gold rounded-sm"
-              aria-label="Oak Glen Directory — home"
+              className="inline-flex items-center gap-2.5 mb-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-sm"
+              aria-label={`${siteConfig.name} — home`}
             >
-              <div className="w-8 h-8 rounded-md bg-harvest-gold flex items-center justify-center flex-shrink-0 group-hover:bg-harvest-amber transition-colors duration-200">
-                <Apple size={18} className="text-earth-bark" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-md bg-brand-accent flex items-center justify-center flex-shrink-0 group-hover:bg-brand-accent-dark transition-colors duration-200">
+                <Apple size={18} className="text-on-accent" aria-hidden="true" />
               </div>
-              <span className="font-serif text-heading-sm text-parchment leading-none">
-                Oak Glen<br />
-                <span className="font-sans text-label text-parchment/50 uppercase tracking-widest font-normal">
+              <span className="font-serif text-heading-sm text-surface leading-none">
+                {siteConfig.location.name}<br />
+                <span className="font-sans text-label text-surface/50 uppercase tracking-widest font-normal">
                   Directory
                 </span>
               </span>
             </Link>
 
             <p className="text-body-sm leading-relaxed max-w-xs mb-6">
-              A curated guide to Oak Glen's finest orchards, cideries, artisan shops, and mountain lodges.
+              {siteConfig.description}
             </p>
 
             {/* Location chip */}
-            <div className="inline-flex items-center gap-1.5 text-label text-parchment/45 mb-7">
+            <div className="inline-flex items-center gap-1.5 text-label text-surface/45 mb-7">
               <MapPin size={12} aria-hidden="true" />
-              Oak Glen, CA 92399 — San Bernardino Mountains
+              {siteConfig.location.name}, {siteConfig.location.state} {siteConfig.location.zip} — {siteConfig.location.region}
             </div>
 
             {/* Social links */}
@@ -90,7 +91,7 @@ export function Footer() {
               {[
                 { icon: Instagram, label: "Instagram", href: "https://instagram.com" },
                 { icon: Facebook,  label: "Facebook",  href: "https://facebook.com"  },
-                { icon: Mail,      label: "Email us",  href: "mailto:hello@visitoakglen.com" },
+                { icon: Mail,      label: "Email us",  href: `mailto:${siteConfig.contactEmail}` },
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
@@ -98,7 +99,7 @@ export function Footer() {
                   aria-label={label}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="w-9 h-9 rounded-full border border-parchment/15 hover:border-harvest-gold/60 flex items-center justify-center text-parchment/45 hover:text-harvest-gold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-harvest-gold"
+                  className="w-9 h-9 rounded-full border border-surface/15 hover:border-brand-accent/60 flex items-center justify-center text-surface/45 hover:text-brand-accent transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
                   <Icon size={15} aria-hidden="true" />
                 </a>
@@ -109,7 +110,7 @@ export function Footer() {
           {/* Nav columns */}
           {NAV_COLUMNS.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
-              <p className="text-label text-parchment/40 uppercase tracking-widest mb-4">
+              <p className="text-label text-surface/40 uppercase tracking-widest mb-4">
                 {col.heading}
               </p>
               <ul className="space-y-2.5">
@@ -117,7 +118,7 @@ export function Footer() {
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-body-sm text-parchment/60 hover:text-parchment transition-colors duration-200 inline-flex items-center gap-1 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-harvest-gold rounded-sm"
+                      className="text-body-sm text-surface/60 hover:text-surface transition-colors duration-200 inline-flex items-center gap-1 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-accent rounded-sm"
                     >
                       {label}
                     </Link>
@@ -130,11 +131,11 @@ export function Footer() {
       </div>
 
       {/* ── Divider ── */}
-      <div className="border-t border-parchment/8 mx-6 lg:mx-8" aria-hidden="true" />
+      <div className="border-t border-surface/8 mx-6 lg:mx-8" aria-hidden="true" />
 
       {/* ── Bottom bar ── */}
-      <div className="max-w-site mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-label text-parchment/35">
-        <p>© {year} Oak Glen Directory. All rights reserved.</p>
+      <div className="max-w-site mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-label text-surface/35">
+        <p>© {year} {siteConfig.name}. All rights reserved.</p>
         <div className="flex items-center gap-5">
           {[
             { label: "Privacy Policy", href: "/privacy" },
@@ -146,7 +147,7 @@ export function Footer() {
               href={href}
               target={external ? "_blank" : undefined}
               rel={external ? "noopener noreferrer" : undefined}
-              className="hover:text-parchment/60 transition-colors duration-200 inline-flex items-center gap-0.5"
+              className="hover:text-surface/60 transition-colors duration-200 inline-flex items-center gap-0.5"
             >
               {label}
               {external && <ArrowUpRight size={10} aria-hidden="true" />}

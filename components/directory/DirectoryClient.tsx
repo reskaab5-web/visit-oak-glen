@@ -88,8 +88,8 @@ function FilterPill({
           className={[
             "inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-[500]",
             active
-              ? "bg-parchment/20 text-parchment"
-              : "bg-parchment-muted text-oak-fog",
+              ? "bg-surface/20 text-surface"
+              : "bg-surface-muted text-content-subtle",
           ].join(" ")}
         >
           {count}
@@ -119,7 +119,7 @@ function Toggle({
       onClick={() => onChange(!checked)}
       className={[
         "toggle-track border-0",
-        checked ? "bg-harvest-gold" : "bg-parchment-muted",
+        checked ? "bg-brand-accent" : "bg-surface-muted",
       ].join(" ")}
     >
       <div
@@ -211,15 +211,15 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
   return (
     <>
       {/* ══ FILTER BAR — sticky below the main header ══════════════════════ */}
-      <div className="sticky top-[64px] lg:top-[80px] z-40 bg-parchment/[0.97] backdrop-blur-md border-b border-parchment-muted">
+      <div className="sticky top-[64px] lg:top-[80px] z-40 bg-surface/[0.97] backdrop-blur-md border-b border-surface-muted">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ── Search input row ── */}
-          <div className="py-3 border-b border-parchment-muted/60">
+          <div className="py-3 border-b border-surface-muted/60">
             <div className="relative flex items-center">
               <Search
                 size={16}
-                className="absolute left-3.5 text-oak-fog pointer-events-none"
+                className="absolute left-3.5 text-content-subtle pointer-events-none"
                 aria-hidden="true"
               />
               <input
@@ -228,14 +228,14 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search orchards, cider, activities…"
                 aria-label="Search listings"
-                className="w-full bg-parchment-warm border border-parchment-muted rounded-md pl-10 pr-10 py-2.5 font-sans text-body-sm text-oak-charcoal placeholder:text-oak-fog focus:outline-none focus:ring-2 focus:ring-harvest-gold focus:border-transparent transition-all duration-200 min-h-[44px]"
+                className="w-full bg-surface-warm border border-surface-muted rounded-md pl-10 pr-10 py-2.5 font-sans text-body-sm text-content-strong placeholder:text-content-subtle focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all duration-200 min-h-[44px]"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
                   aria-label="Clear search"
-                  className="absolute right-3 p-1 text-oak-fog hover:text-oak-charcoal transition-colors duration-200"
+                  className="absolute right-3 p-1 text-content-subtle hover:text-content-strong transition-colors duration-200"
                 >
                   <X size={15} aria-hidden="true" />
                 </button>
@@ -275,18 +275,18 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
           <div className="flex items-center justify-between gap-4 pb-3 flex-wrap">
 
             {/* Result count */}
-            <p className="font-sans text-body-sm text-oak-stone flex-shrink-0">
-              <span className="font-[500] text-oak-charcoal">{filtered.length}</span>
+            <p className="font-sans text-body-sm text-content-base flex-shrink-0">
+              <span className="font-[500] text-content-strong">{filtered.length}</span>
               {" "}
               {filtered.length === 1 ? "listing" : "listings"}
               {searchQuery.trim() && (
-                <span className="text-oak-fog"> for{" "}
-                  <span className="text-forest-mid">&ldquo;{searchQuery.trim()}&rdquo;</span>
+                <span className="text-content-subtle"> for{" "}
+                  <span className="text-brand-primary-mid">&ldquo;{searchQuery.trim()}&rdquo;</span>
                 </span>
               )}
               {!searchQuery.trim() && activeCategory !== ALL_SLUG && (
-                <span className="text-oak-fog"> in{" "}
-                  <span className="text-forest-mid">
+                <span className="text-content-subtle"> in{" "}
+                  <span className="text-brand-primary-mid">
                     {categories.find((c) => c.slug === activeCategory)?.label}
                   </span>
                 </span>
@@ -298,9 +298,9 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
               <div className="flex items-center gap-2.5">
                 <label
                   htmlFor={toggleId}
-                  className="font-sans text-body-sm text-oak-stone cursor-pointer select-none flex items-center gap-1.5"
+                  className="font-sans text-body-sm text-content-base cursor-pointer select-none flex items-center gap-1.5"
                 >
-                  <Star size={13} className="text-harvest-gold" aria-hidden="true" />
+                  <Star size={13} className="text-brand-accent" aria-hidden="true" />
                   Featured only
                 </label>
                 <Toggle
@@ -314,7 +314,7 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
               <div className="relative flex items-center">
                 <SlidersHorizontal
                   size={14}
-                  className="absolute left-3 text-oak-fog pointer-events-none"
+                  className="absolute left-3 text-content-subtle pointer-events-none"
                   aria-hidden="true"
                 />
                 <select
@@ -323,7 +323,7 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                     setSortBy(e.target.value as SortValue)
                   }
                   aria-label="Sort listings"
-                  className="appearance-none bg-parchment-warm border border-parchment-muted rounded-md pl-8 pr-8 py-2 font-sans text-body-sm text-oak-charcoal cursor-pointer focus:outline-none focus:ring-2 focus:ring-harvest-gold min-h-[44px]"
+                  className="appearance-none bg-surface-warm border border-surface-muted rounded-md pl-8 pr-8 py-2 font-sans text-body-sm text-content-strong cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent min-h-[44px]"
                 >
                   {SORT_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -333,7 +333,7 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                 </select>
                 <ChevronDown
                   size={14}
-                  className="absolute right-3 text-oak-fog pointer-events-none"
+                  className="absolute right-3 text-content-subtle pointer-events-none"
                   aria-hidden="true"
                 />
               </div>
@@ -390,6 +390,7 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                         location={business.location}
                         slug={business.slug}
                         featured={business.featured}
+                        tier={business.tier}
                       />
                     </motion.div>
                   ))}
@@ -403,18 +404,18 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                 animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
                 className="flex flex-col items-center justify-center py-24 text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-forest-pale flex items-center justify-center mb-5">
+                <div className="w-16 h-16 rounded-full bg-brand-primary-pale flex items-center justify-center mb-5">
                   <SearchX
                     size={26}
-                    className="text-forest-mid"
+                    className="text-brand-primary-mid"
                     strokeWidth={1.5}
                     aria-hidden="true"
                   />
                 </div>
-                <h2 className="font-serif text-heading-md text-oak-charcoal mb-3">
+                <h2 className="font-serif text-heading-md text-content-strong mb-3">
                   No listings found
                 </h2>
-                <p className="font-sans text-body-md text-oak-stone max-w-sm leading-relaxed mb-8">
+                <p className="font-sans text-body-md text-content-base max-w-sm leading-relaxed mb-8">
                   Try adjusting your search or browsing a different category.
                 </p>
                 <button
@@ -424,7 +425,7 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
                     setActiveCategory(ALL_SLUG);
                     setShowFeaturedOnly(false);
                   }}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-forest-deep hover:bg-forest-mid text-label text-parchment uppercase tracking-widest transition-all duration-200 min-h-[44px]"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-brand-primary hover:bg-brand-primary-mid text-label text-surface uppercase tracking-widest transition-all duration-200 min-h-[44px]"
                 >
                   Clear all filters
                 </button>
@@ -441,24 +442,24 @@ export function DirectoryClient({ businesses, categories, initialQuery = "" }: D
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-parchment-warm border-t border-parchment-muted py-14 px-4 sm:px-6 lg:px-8"
+          className="bg-surface-warm border-t border-surface-muted py-14 px-4 sm:px-6 lg:px-8"
           aria-labelledby="cta-heading"
         >
           <div className="max-w-site mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
             <div>
-              <p className="font-sans text-label text-forest-mid uppercase tracking-widest mb-2">
+              <p className="font-sans text-label text-brand-primary-mid uppercase tracking-widest mb-2">
                 Own a business in Oak Glen?
               </p>
               <h2
                 id="cta-heading"
-                className="font-serif text-heading-md text-oak-charcoal"
+                className="font-serif text-heading-md text-content-strong"
               >
                 Get listed in the directory
               </h2>
             </div>
             <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-md bg-forest-deep hover:bg-forest-mid text-label text-parchment uppercase tracking-widest transition-all duration-200 hover:-translate-y-px shadow-card flex-shrink-0 min-h-[52px]"
+              href="/claim"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-md bg-brand-primary hover:bg-brand-primary-mid text-label text-surface uppercase tracking-widest transition-all duration-200 hover:-translate-y-px shadow-card flex-shrink-0 min-h-[52px]"
             >
               Submit your listing
               <ArrowRight size={15} aria-hidden="true" />

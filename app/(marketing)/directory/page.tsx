@@ -18,17 +18,22 @@ import {
   AnimatedHeroItem,
 }                                   from "@/components/motion/AnimatedHeroContent";
 import { businesses, categories }   from "@/lib/data/mockData";
+import { siteConfig }               from "@/lib/config/site";
+import {
+  buildCollectionPageSchema,
+  buildItemListSchema,
+}                                   from "@/lib/schema/builders";
+import { JsonLd }                   from "@/components/seo/JsonLd";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title:       "Business Directory — Oak Glen, CA",
-  description:
-    "Browse all businesses in Oak Glen — orchards, cideries, gift shops, lodging, and more. Filter by category and find your next favourite stop.",
+  title:       `Business Directory — ${siteConfig.location.name}, ${siteConfig.location.state}`,
+  description: `Browse all businesses in ${siteConfig.location.name} — filter by category and find your next favourite stop.`,
+  alternates:  { canonical: "/directory" },
   openGraph: {
-    title:       "Oak Glen Business Directory",
-    description: "Every orchard, café, and artisan shop in one place.",
-    images:      [{ url: "/images/og/directory.jpg" }],
+    title:       `${siteConfig.location.name} Business Directory`,
+    description: `Every business in ${siteConfig.location.name} in one place.`,
   },
 };
 
@@ -44,13 +49,23 @@ export default async function DirectoryPage({
   const totalCount = businesses.length;
 
   return (
+    <>
+      <JsonLd data={[
+        buildCollectionPageSchema(
+          siteConfig,
+          "/directory",
+          `${siteConfig.location.name} Business Directory`,
+          `Browse all businesses in ${siteConfig.location.name} — filter by category and find your next favourite stop.`,
+        ),
+        buildItemListSchema(businesses, `${siteConfig.url}/directory`, siteConfig),
+      ]} />
     <main>
       {/* ════════════════════════════════════════════════════════════════
           HERO — compact, not full-screen; lets users reach listings fast
       ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative min-h-[300px] sm:min-h-[340px] flex flex-col justify-end overflow-hidden"
-        aria-label="Oak Glen Business Directory"
+        aria-label={`${siteConfig.location.name} Business Directory`}
       >
         {/* Background */}
         <div className="absolute inset-0" aria-hidden="true">
@@ -64,7 +79,7 @@ export default async function DirectoryPage({
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/55 to-forest-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/90 via-brand-primary/55 to-brand-primary/20" />
         </div>
 
         {/* Content — animated on mount */}
@@ -75,24 +90,24 @@ export default async function DirectoryPage({
               <div className="flex items-center gap-2 mb-4">
                 <MapPin
                   size={13}
-                  className="text-harvest-gold"
+                  className="text-brand-accent"
                   strokeWidth={2}
                   aria-hidden="true"
                 />
-                <span className="font-sans text-label text-harvest-gold uppercase tracking-[0.2em]">
-                  Oak Glen, California
+                <span className="font-sans text-label text-brand-accent uppercase tracking-[0.2em]">
+                  {siteConfig.location.name}, {siteConfig.location.state}
                 </span>
               </div>
             </AnimatedHeroItem>
 
             <AnimatedHeroItem>
-              <h1 className="font-serif text-display-lg sm:text-heading-xl lg:text-display-lg text-parchment leading-[1.1]">
+              <h1 className="font-serif text-display-lg sm:text-heading-xl lg:text-display-lg text-surface leading-[1.1]">
                 Business Directory
               </h1>
             </AnimatedHeroItem>
 
             <AnimatedHeroItem>
-              <p className="mt-4 font-sans text-body-md sm:text-body-lg text-parchment/80 leading-relaxed">
+              <p className="mt-4 font-sans text-body-md sm:text-body-lg text-surface/80 leading-relaxed">
                 {totalCount} curated listings spanning farms, orchards, cider houses, restaurants, and more in the San Bernardino Mountains.
               </p>
             </AnimatedHeroItem>
@@ -102,7 +117,7 @@ export default async function DirectoryPage({
 
         {/* Fade to page */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-parchment to-transparent pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface to-transparent pointer-events-none"
           aria-hidden="true"
         />
       </section>
@@ -110,7 +125,7 @@ export default async function DirectoryPage({
       {/* ════════════════════════════════════════════════════════════════
           INTERACTIVE DIRECTORY — filter, sort, animated grid
       ════════════════════════════════════════════════════════════════ */}
-      <div className="bg-parchment min-h-[60vh]">
+      <div className="bg-surface min-h-[60vh]">
         <DirectoryClient
           businesses={businesses}
           categories={categories}
@@ -118,5 +133,6 @@ export default async function DirectoryPage({
         />
       </div>
     </main>
+    </>
   );
 }

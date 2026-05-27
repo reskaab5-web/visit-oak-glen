@@ -17,7 +17,7 @@
 export function BusinessCardSkeleton() {
   return (
     <div
-      className="rounded-lg overflow-hidden bg-parchment-warm border border-parchment-muted"
+      className="rounded-lg overflow-hidden bg-surface-warm border border-surface-muted"
       aria-hidden="true" /* hidden from screen readers — real content will replace this */
     >
       {/* ── Image area — 16:9 ── */}

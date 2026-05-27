@@ -1,4 +1,20 @@
-import type { Config } from "tailwindcss";
+import type { Config }    from "tailwindcss";
+import typography         from "@tailwindcss/typography";
+
+/**
+ * Tailwind config — template edition
+ *
+ * All brand colors reference CSS custom properties defined in globals.css.
+ * To reskin for a new client, update the --color-* variables in :root —
+ * no Tailwind config changes required.
+ *
+ * Token vocabulary (semantic, not area-specific):
+ *   brand-primary-*   Primary brand color (nav, CTAs, headings on light bg)
+ *   brand-accent-*    Accent / highlight color (buttons, stars, badges)
+ *   surface-*         Page and card backgrounds
+ *   content-*         Body text at varying emphasis levels
+ *   on-accent         Text placed directly on an accent-colored background
+ */
 
 const config: Config = {
   content: [
@@ -8,49 +24,41 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // ─── Color palette ───────────────────────────────────────────────
+      // ─── Color palette ───────────────────────────────────────────────────
       colors: {
-        // Forest greens
-        forest: {
-          deep:  "#1A2E1A",
-          mid:   "#2D4A2D",
-          light: "#4A7A4A",
-          pale:  "#EEF4EE",
-        },
-        // Harvest golds
-        harvest: {
-          gold:   "#C17F24",
-          amber:  "#A86B1A",
-          warm:   "#F5E6C8",
-        },
-        // Parchment / page base
-        parchment: {
-          DEFAULT: "#F5F0E8",
-          warm:    "#F0EAE0",
-          muted:   "#DDD6C8",
-        },
-        // Oak / text tones
-        oak: {
-          charcoal: "#2C2416",
-          stone:    "#5C5040",
-          fog:      "#8C7E6A",
-        },
-        // Earth / accent
-        earth: {
-          bark:  "#6B4226",
-          rust:  "#8B4513",
-          sienna:"#A0522D",
-        },
+        // Primary brand color
+        "brand-primary":       "var(--color-brand-primary)",
+        "brand-primary-mid":   "var(--color-brand-primary-mid)",
+        "brand-primary-light": "var(--color-brand-primary-light)",
+        "brand-primary-pale":  "var(--color-brand-primary-pale)",
+
+        // Accent / highlight color
+        "brand-accent":        "var(--color-brand-accent)",
+        "brand-accent-dark":   "var(--color-brand-accent-dark)",
+        "brand-accent-pale":   "var(--color-brand-accent-pale)",
+
+        // Surface / background tones
+        "surface":             "var(--color-surface)",
+        "surface-warm":        "var(--color-surface-warm)",
+        "surface-muted":       "var(--color-surface-muted)",
+
+        // Content / text tones
+        "content-strong":      "var(--color-content-strong)",
+        "content-base":        "var(--color-content-base)",
+        "content-subtle":      "var(--color-content-subtle)",
+
+        // Text on accent-colored backgrounds
+        "on-accent":           "var(--color-on-accent)",
       },
 
-      // ─── Typography ──────────────────────────────────────────────────
+      // ─── Typography ──────────────────────────────────────────────────────
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans:  ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans:  ["var(--font-sans)",  "system-ui", "sans-serif"],
       },
       fontSize: {
         // Display scale
-        "display-2xl": ["4.5rem",   { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "700" }],
+        "display-2xl": ["4.5rem",   { lineHeight: "1.05", letterSpacing: "-0.03em",  fontWeight: "700" }],
         "display-xl":  ["3.75rem",  { lineHeight: "1.06", letterSpacing: "-0.025em", fontWeight: "700" }],
         "display-lg":  ["3rem",     { lineHeight: "1.08", letterSpacing: "-0.02em",  fontWeight: "700" }],
         // Heading scale
@@ -66,7 +74,7 @@ const config: Config = {
         "label":       ["0.75rem",  { lineHeight: "1.5", letterSpacing: "0.05em", fontWeight: "500" }],
       },
 
-      // ─── Spacing ─────────────────────────────────────────────────────
+      // ─── Spacing ─────────────────────────────────────────────────────────
       spacing: {
         section: "6rem",
         hero:    "9rem",
@@ -76,21 +84,21 @@ const config: Config = {
         site: "1400px",
       },
 
-      // ─── Border radius ───────────────────────────────────────────────
+      // ─── Border radius ───────────────────────────────────────────────────
       borderRadius: {
         card:  "0.75rem",
         badge: "0.375rem",
       },
 
-      // ─── Shadows ─────────────────────────────────────────────────────
+      // ─── Shadows ─────────────────────────────────────────────────────────
       boxShadow: {
-        card:       "0 2px 8px 0 rgba(44,36,22,0.08), 0 1px 2px 0 rgba(44,36,22,0.04)",
-        "card-hover":"0 8px 24px 0 rgba(44,36,22,0.14), 0 2px 6px 0 rgba(44,36,22,0.06)",
-        input:      "0 0 0 3px rgba(193,127,36,0.18)",
-        modal:      "0 20px 60px 0 rgba(26,46,26,0.22), 0 4px 12px 0 rgba(26,46,26,0.08)",
+        card:        "0 2px 8px 0 rgba(var(--shadow-rgb), 0.08), 0 1px 2px 0 rgba(var(--shadow-rgb), 0.04)",
+        "card-hover":"0 8px 24px 0 rgba(var(--shadow-rgb), 0.14), 0 2px 6px 0 rgba(var(--shadow-rgb), 0.06)",
+        input:       "0 0 0 3px rgba(var(--color-brand-accent-rgb), 0.18)",
+        modal:       "0 20px 60px 0 rgba(var(--color-brand-primary-rgb), 0.22), 0 4px 12px 0 rgba(var(--color-brand-primary-rgb), 0.08)",
       },
 
-      // ─── Transitions ─────────────────────────────────────────────────
+      // ─── Transitions ─────────────────────────────────────────────────────
       transitionTimingFunction: {
         premium: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
@@ -99,7 +107,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;

@@ -1,5 +1,28 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 
+export type ListingTier = "free" | "standard" | "premium"
+
+export type SocialPlatform =
+  | "facebook"
+  | "instagram"
+  | "twitter"
+  | "yelp"
+  | "tripadvisor"
+  | "youtube"
+
+export interface SocialLink {
+  platform: SocialPlatform
+  /** Full profile URL, e.g. "https://www.facebook.com/losriosrancho" */
+  url:      string
+}
+
+export interface PressLink {
+  publication: string
+  headline:    string
+  url:         string
+  date?:       string
+}
+
 export interface BusinessHours {
   day:    string;
   open:   string;
@@ -39,6 +62,10 @@ export interface Business {
   priceRange:       PriceRange;
   established?:     number;
   tags?:            string[];
+  // ── Listing tier ──
+  tier:             ListingTier;
+  socialLinks?:     SocialLink[];
+  pressLinks?:      PressLink[];
 }
 
 export interface Category {
@@ -89,13 +116,13 @@ It's a simple place done right: no flashy attractions, just honest fruit, honest
     phone:   "(909) 797-4249",
     website: "https://momsoakglen.com",
     hours: [
-      { day: "Monday",    open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Tuesday",   open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
-      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Monday",    open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Tuesday",   open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Wednesday", open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Thursday",  open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Saturday",  open: "10:00 AM", close: "6:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "6:00 PM", closed: false },
     ],
     amenities: [
       "Open Year-Round",
@@ -108,6 +135,7 @@ It's a simple place done right: no flashy attractions, just honest fruit, honest
     featured:   false,
     priceRange: "$",
     tags:       ["apples", "jams", "preserves", "year-round", "farm-store"],
+    tier:       "standard",
   },
 
   {
@@ -139,17 +167,18 @@ The antiques and gifts room inside the historic shed rounds out the visit with l
       state:  "CA",
       zip:    "92399",
     },
-    phone:       "909-256-0405",
+    phone:       "(909) 797-3415",
     website:     "https://oakglenorchard.com",
     established: 1898,
+    // Apple season (Sep–Dec): open 7 days; off-season: Thu–Sun 10AM–4PM
     hours: [
-      { day: "Monday",    open: "",        close: "",        closed: true  },
-      { day: "Tuesday",   open: "",        close: "",        closed: true  },
+      { day: "Monday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Tuesday",   open: "9:00 AM", close: "5:00 PM", closed: false },
       { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
       { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
       { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
-      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM", close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Hard Cider & Wine Tasting",
@@ -163,6 +192,19 @@ The antiques and gifts room inside the historic shed rounds out the visit with l
     featured:   true,
     priceRange: "$$",
     tags:       ["cider", "wine-tasting", "donuts", "u-pick", "historic", "raspberries"],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "facebook",  url: "https://www.facebook.com/snowlineorchards" },
+      { platform: "instagram", url: "https://www.instagram.com/snowlineorchards" },
+    ],
+    pressLinks: [
+      {
+        publication: "San Bernardino Sun",
+        headline:    "Snow-Line Orchards: A Century of Apple Heritage in Oak Glen",
+        url:         "https://www.sbsun.com",
+        date:        "2023-10-14",
+      },
+    ],
   },
 
   {
@@ -196,14 +238,15 @@ For those seeking a bigger adventure, horseback rides and wagon rides traverse t
     },
     phone:   "(909) 797-1005",
     website: "https://losriosrancho.com",
+    // Closed Wednesday; apple season (Aug–Nov): 9AM–5PM; off-season: 10AM–5PM
     hours: [
-      { day: "Monday",    open: "",        close: "",        closed: true  },
-      { day: "Tuesday",   open: "",        close: "",        closed: true  },
-      { day: "Wednesday", open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Monday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Tuesday",   open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Wednesday", open: "",        close: "",         closed: true  },
       { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
       { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Saturday",  open: "8:00 AM", close: "6:00 PM", closed: false },
-      { day: "Sunday",    open: "8:00 AM", close: "6:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM", close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Bakery",
@@ -225,6 +268,26 @@ For those seeking a bigger adventure, horseback rides and wagon rides traverse t
     tags:       [
       "u-pick", "family-friendly", "corn-maze", "weddings",
       "horseback", "bbq", "bakery", "petting-zoo",
+    ],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "facebook",    url: "https://www.facebook.com/losriosrancho" },
+      { platform: "instagram",   url: "https://www.instagram.com/losriosrancho" },
+      { platform: "tripadvisor", url: "https://www.tripadvisor.com/Attraction_Review-g32399-Los_Rios_Rancho" },
+    ],
+    pressLinks: [
+      {
+        publication: "Los Angeles Times",
+        headline:    "Oak Glen's Apple Country: A Weekend Worth the Drive",
+        url:         "https://www.latimes.com",
+        date:        "2024-10-06",
+      },
+      {
+        publication: "Inland Empire Magazine",
+        headline:    "Los Rios Rancho Anchors Oak Glen's Harvest Season",
+        url:         "https://www.inlandempiremagazine.com",
+        date:        "2023-09-20",
+      },
     ],
   },
 
@@ -257,7 +320,7 @@ Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up w
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-557-3447",
+    phone:   "(909) 557-3447",
     website: "https://stonepantryorchard.com",
     hours: [
       { day: "Monday",    open: "", close: "", closed: true  },
@@ -265,8 +328,8 @@ Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up w
       { day: "Wednesday", open: "", close: "", closed: true  },
       { day: "Thursday",  open: "", close: "", closed: true  },
       { day: "Friday",    open: "", close: "", closed: true  },
-      { day: "Saturday",  open: "9:00 AM", close: "5:00 PM", closed: false },
-      { day: "Sunday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "5:00 PM", closed: false },
     ],
     amenities: [
       "U-Pick Apples & Pears",
@@ -280,6 +343,7 @@ Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up w
     featured:   false,
     priceRange: "$",
     tags:       ["u-pick", "cider-press", "seasonal", "pumpkins", "weekend-only"],
+    tier:       "free",
   },
 
   {
@@ -311,16 +375,16 @@ Willowbrook is a quieter corner of Oak Glen — not the biggest or the loudest, 
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "",
+    phone:   "(909) 797-9484",
     website: "https://willowbrookapplefarm.com",
     hours: [
       { day: "Monday",    open: "", close: "", closed: true  },
       { day: "Tuesday",   open: "", close: "", closed: true  },
       { day: "Wednesday", open: "", close: "", closed: true  },
       { day: "Thursday",  open: "", close: "", closed: true  },
-      { day: "Friday",    open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "5:30 PM", closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "", close: "",         closed: true  },
+      { day: "Saturday",  open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "4:00 PM", closed: false },
     ],
     amenities: [
       "U-Press Cider",
@@ -334,6 +398,7 @@ Willowbrook is a quieter corner of Oak Glen — not the biggest or the loudest, 
     featured:   false,
     priceRange: "$",
     tags:       ["cider-press", "u-pick", "honey", "jams", "farm-store"],
+    tier:       "free",
   },
 
   {
@@ -367,14 +432,15 @@ The farm shop carries what the land produces — fresh fruit, cut flowers, dried
     },
     phone:   "",
     website: "https://stonesoupfarmca.com",
+    // Event-based schedule — no fixed weekly walk-in hours; see website for seasonal Open Farm Days
     hours: [
-      { day: "Monday",    open: "", close: "", closed: true  },
-      { day: "Tuesday",   open: "", close: "", closed: true  },
-      { day: "Wednesday", open: "", close: "", closed: true  },
-      { day: "Thursday",  open: "", close: "", closed: true  },
-      { day: "Friday",    open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "5:00 PM", closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Monday",    open: "",                      close: "", closed: true  },
+      { day: "Tuesday",   open: "",                      close: "", closed: true  },
+      { day: "Wednesday", open: "",                      close: "", closed: true  },
+      { day: "Thursday",  open: "",                      close: "", closed: true  },
+      { day: "Friday",    open: "",                      close: "", closed: true  },
+      { day: "Saturday",  open: "Seasonal (see website)", close: "", closed: false },
+      { day: "Sunday",    open: "Seasonal (see website)", close: "", closed: false },
     ],
     amenities: [
       "Regenerative Orchard",
@@ -389,6 +455,10 @@ The farm shop carries what the land produces — fresh fruit, cut flowers, dried
     featured:   false,
     priceRange: "$$$",
     tags:       ["regenerative", "flowers", "dining-events", "floral-studio", "u-pick"],
+    tier:       "standard",
+    socialLinks: [
+      { platform: "instagram", url: "https://www.instagram.com/stonesoupfarmca" },
+    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -427,13 +497,13 @@ Craft cocktails pull from a thoughtful spirits list with a regional bent, and th
     phone:   "(909) 797-2844",
     website: "https://oakglensteakhouse.com",
     hours: [
-      { day: "Monday",    open: "",         close: "",         closed: true  },
-      { day: "Tuesday",   open: "",         close: "",         closed: true  },
-      { day: "Wednesday", open: "11:00 AM", close: "9:00 PM",  closed: false },
-      { day: "Thursday",  open: "11:00 AM", close: "9:00 PM",  closed: false },
-      { day: "Friday",    open: "11:00 AM", close: "10:00 PM", closed: false },
-      { day: "Saturday",  open: "10:00 AM", close: "10:00 PM", closed: false },
-      { day: "Sunday",    open: "10:00 AM", close: "8:00 PM",  closed: false },
+      { day: "Monday",    open: "",         close: "",        closed: true  },
+      { day: "Tuesday",   open: "",         close: "",        closed: true  },
+      { day: "Wednesday", open: "11:30 AM", close: "8:00 PM", closed: false },
+      { day: "Thursday",  open: "11:30 AM", close: "8:00 PM", closed: false },
+      { day: "Friday",    open: "11:30 AM", close: "9:00 PM", closed: false },
+      { day: "Saturday",  open: "11:30 AM", close: "9:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "8:00 PM", closed: false },
     ],
     amenities: [
       "Fine Dining",
@@ -449,6 +519,10 @@ Craft cocktails pull from a thoughtful spirits list with a regional bent, and th
     featured:   false,
     priceRange: "$$$",
     tags:       ["steakhouse", "fine-dining", "brunch", "cocktails", "banquet"],
+    tier:       "standard",
+    socialLinks: [
+      { platform: "facebook", url: "https://www.facebook.com/oakglensteakhouse" },
+    ],
   },
 
   {
@@ -480,16 +554,16 @@ The cigar selection, carried in a dedicated humidor, has built a loyal following
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-790-3322",
-    website: "https://losriosrancho.com/wilshire-apple-shed/",
+    phone:   "(909) 790-3322",
+    website: "https://www.wilshiresappleshed.com",
     hours: [
-      { day: "Monday",    open: "",        close: "",        closed: true  },
-      { day: "Tuesday",   open: "",        close: "",        closed: true  },
-      { day: "Wednesday", open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Friday",    open: "10:00 AM", close: "6:00 PM", closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "6:00 PM", closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Monday",    open: "",         close: "",        closed: true  },
+      { day: "Tuesday",   open: "",         close: "",        closed: true  },
+      { day: "Wednesday", open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Thursday",  open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Saturday",  open: "9:30 AM",  close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:30 AM",  close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Artisan Pizza",
@@ -503,6 +577,11 @@ The cigar selection, carried in a dedicated humidor, has built a loyal following
     featured:   false,
     priceRange: "$$",
     tags:       ["pizza", "cider", "coffee", "cigars", "patio"],
+    tier:       "standard",
+    socialLinks: [
+      { platform: "instagram", url: "https://www.instagram.com/wilshiresappleshed" },
+      { platform: "facebook",  url: "https://www.facebook.com/wilshiresappleshed" },
+    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -538,16 +617,17 @@ Tasting is available at the cidery during regular hours. For visitors working th
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-790-3322",
-    website: "https://oakglenciderco.com",
+    phone:   "(909) 797-3322",
+    website: "https://oakglencider.company",
+    // Housed at Los Rios Rancho (39611 Oak Glen Rd) — mirrors that venue's hours
     hours: [
-      { day: "Monday",    open: "",        close: "",        closed: true  },
-      { day: "Tuesday",   open: "",        close: "",        closed: true  },
-      { day: "Wednesday", open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM", closed: false },
-      { day: "Friday",    open: "10:00 AM", close: "6:00 PM", closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "6:00 PM", closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Monday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Tuesday",   open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Wednesday", open: "",        close: "",         closed: true  },
+      { day: "Thursday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM", close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Hard Cider Tasting",
@@ -560,6 +640,19 @@ Tasting is available at the cidery during regular hours. For visitors working th
     featured:   true,
     priceRange: "$$",
     tags:       ["hard-cider", "tasting-room", "craft", "estate-grown", "local"],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "instagram", url: "https://www.instagram.com/oakglenciderco" },
+      { platform: "facebook",  url: "https://www.facebook.com/oakglenciderco" },
+    ],
+    pressLinks: [
+      {
+        publication: "Craft Beer & Brewing Magazine",
+        headline:    "Oak Glen Cider Company: Estate-Grown, Blossom to Bottle",
+        url:         "https://beerandbrewing.com",
+        date:        "2024-04-12",
+      },
+    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -598,13 +691,13 @@ Cider is pressed from the ranch's own apples, and the gift selection skews towar
     phone:   "(562) 450-8139",
     website: "https://holyhoney.com",
     hours: [
-      { day: "Monday",    open: "",         close: "",         closed: true  },
-      { day: "Tuesday",   open: "",         close: "",         closed: true  },
-      { day: "Wednesday", open: "",         close: "",         closed: true  },
-      { day: "Thursday",  open: "",         close: "",         closed: true  },
-      { day: "Friday",    open: "10:00 AM", close: "5:00 PM",  closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "5:30 PM",  closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Monday",    open: "",         close: "",        closed: true  },
+      { day: "Tuesday",   open: "",         close: "",        closed: true  },
+      { day: "Wednesday", open: "",         close: "",        closed: true  },
+      { day: "Thursday",  open: "",         close: "",        closed: true  },
+      { day: "Friday",    open: "",         close: "",        closed: true  },
+      { day: "Saturday",  open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "10:00 AM", close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Home-Grown Apples",
@@ -617,6 +710,7 @@ Cider is pressed from the ranch's own apples, and the gift selection skews towar
     featured:   false,
     priceRange: "$",
     tags:       ["honey", "cider", "gifts", "apples", "small-batch"],
+    tier:       "free",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -652,7 +746,7 @@ Bookings are handled directly through the manor, and rates and availability are 
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "",
+    phone:   "(909) 255-1384",
     website: "https://stoneoakmanor.com",
     hours: [
       { day: "Monday",    open: "By Reservation", close: "", closed: false },
@@ -675,6 +769,11 @@ Bookings are handled directly through the manor, and rates and availability are 
     featured:   true,
     priceRange: "$$$",
     tags:       ["bed-and-breakfast", "historic", "groups", "weddings", "retreat"],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "facebook",  url: "https://www.facebook.com/stoneoakmanor" },
+      { platform: "instagram", url: "https://www.instagram.com/stoneoakmanor" },
+    ],
   },
 
   {
@@ -706,7 +805,7 @@ The peaceful natural surroundings, combined with facilities designed for group g
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-797-2570",
+    phone:   "(909) 797-2570",
     website: "https://oakglen.org",
     hours: [
       { day: "Monday",    open: "By Reservation", close: "", closed: false },
@@ -729,6 +828,7 @@ The peaceful natural surroundings, combined with facilities designed for group g
     featured:   false,
     priceRange: "$$",
     tags:       ["retreat", "conference", "groups", "church", "camp"],
+    tier:       "standard",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -764,16 +864,17 @@ Dinner theater events are held on select evenings throughout the year, combining
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-797-7534",
+    phone:   "(909) 797-7534",
     website: "https://rileysfarm.com",
+    // Thu–Sat 10AM–4PM; closed Sun–Wed (except field trips / special events)
     hours: [
-      { day: "Monday",    open: "",         close: "",         closed: true  },
-      { day: "Tuesday",   open: "",         close: "",         closed: true  },
-      { day: "Wednesday", open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Thursday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Friday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Saturday",  open: "8:00 AM",  close: "6:00 PM",  closed: false },
-      { day: "Sunday",    open: "8:00 AM",  close: "6:00 PM",  closed: false },
+      { day: "Monday",    open: "",         close: "",        closed: true  },
+      { day: "Tuesday",   open: "",         close: "",        closed: true  },
+      { day: "Wednesday", open: "",         close: "",        closed: true  },
+      { day: "Thursday",  open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Friday",    open: "",         close: "",        closed: true  },
+      { day: "Saturday",  open: "10:00 AM", close: "4:00 PM", closed: false },
+      { day: "Sunday",    open: "",         close: "",        closed: true  },
     ],
     amenities: [
       "Pick-Your-Own Apples",
@@ -790,6 +891,26 @@ Dinner theater events are held on select evenings throughout the year, combining
     tags:       [
       "living-history", "dinner-theater", "u-pick", "school-groups",
       "overnight", "family-friendly", "events",
+    ],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "facebook",  url: "https://www.facebook.com/rileysfarm" },
+      { platform: "twitter",   url: "https://twitter.com/rileysfarm" },
+      { platform: "youtube",   url: "https://www.youtube.com/@rileysfarm" },
+    ],
+    pressLinks: [
+      {
+        publication: "Los Angeles Times",
+        headline:    "Riley's Farm: Where History Is More Than a Field Trip",
+        url:         "https://www.latimes.com",
+        date:        "2024-03-18",
+      },
+      {
+        publication: "CBS News Los Angeles",
+        headline:    "Living History Comes to Life at Oak Glen's Riley's Farm",
+        url:         "https://www.cbsnews.com/losangeles",
+        date:        "2023-11-03",
+      },
     ],
   },
 
@@ -822,17 +943,17 @@ Axe Therapy — Oak Tree Mountain's axe-throwing facility — has emerged as a s
       state:  "CA",
       zip:    "92399",
     },
-    phone:       "909-797-4420",
+    phone:       "(909) 797-2311",
     website:     "https://oaktreemountain.com",
     email:       "contact@oaktreemountain.com",
     hours: [
-      { day: "Monday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Tuesday",   open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Wednesday", open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Thursday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Friday",    open: "9:00 AM",  close: "7:00 PM",  closed: false },
-      { day: "Saturday",  open: "8:00 AM",  close: "7:00 PM",  closed: false },
-      { day: "Sunday",    open: "8:00 AM",  close: "6:00 PM",  closed: false },
+      { day: "Monday",    open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Tuesday",   open: "",         close: "",         closed: true  },
+      { day: "Wednesday", open: "",         close: "",         closed: true  },
+      { day: "Thursday",  open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Friday",    open: "10:00 AM", close: "5:00 PM", closed: false },
+      { day: "Saturday",  open: "9:00 AM",  close: "5:00 PM", closed: false },
+      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM", closed: false },
     ],
     amenities: [
       "Animal Park",
@@ -851,6 +972,19 @@ Axe Therapy — Oak Tree Mountain's axe-throwing facility — has emerged as a s
     tags:       [
       "family-friendly", "axe-throwing", "animals", "fishing",
       "bakery", "live-music", "year-round",
+    ],
+    tier:       "premium",
+    socialLinks: [
+      { platform: "facebook",  url: "https://www.facebook.com/oaktreemountain" },
+      { platform: "instagram", url: "https://www.instagram.com/oaktreemountainoakglen" },
+    ],
+    pressLinks: [
+      {
+        publication: "Press-Enterprise",
+        headline:    "Oak Tree Mountain: Oak Glen's Year-Round Adventure Hub",
+        url:         "https://www.pe.com",
+        date:        "2024-07-22",
+      },
     ],
   },
 
@@ -887,7 +1021,7 @@ The Homestead is a reminder that the best event venues are the ones where the lo
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-790-8010",
+    phone:   "(909) 790-8010",
     website: "https://homesteadoakglen.com",
     hours: [
       { day: "Monday",    open: "By Appointment", close: "", closed: false },
@@ -910,6 +1044,7 @@ The Homestead is a reminder that the best event venues are the ones where the lo
     featured:   false,
     priceRange: "$$$",
     tags:       ["weddings", "outdoor-venue", "private-events", "scenic-views", "orchard"],
+    tier:       "standard" as ListingTier,
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -945,16 +1080,17 @@ Private event reservations for sections of the park are available — the covere
       state:  "CA",
       zip:    "92399",
     },
-    phone:   "909-797-1691",
+    phone:   "(909) 501-8281",
     website: "https://oakglenschoolmuseum.com",
+    // Apple season (Sep–Nov): Wed–Sun 12PM–4PM; off-season: Sat–Sun 12PM–4PM
     hours: [
-      { day: "Monday",    open: "",         close: "",         closed: true  },
-      { day: "Tuesday",   open: "",         close: "",         closed: true  },
-      { day: "Wednesday", open: "10:00 AM", close: "4:00 PM",  closed: false },
-      { day: "Thursday",  open: "10:00 AM", close: "4:00 PM",  closed: false },
-      { day: "Friday",    open: "10:00 AM", close: "4:00 PM",  closed: false },
-      { day: "Saturday",  open: "9:00 AM",  close: "5:00 PM",  closed: false },
-      { day: "Sunday",    open: "9:00 AM",  close: "5:00 PM",  closed: false },
+      { day: "Monday",    open: "",         close: "",        closed: true  },
+      { day: "Tuesday",   open: "",         close: "",        closed: true  },
+      { day: "Wednesday", open: "12:00 PM", close: "4:00 PM", closed: false },
+      { day: "Thursday",  open: "12:00 PM", close: "4:00 PM", closed: false },
+      { day: "Friday",    open: "12:00 PM", close: "4:00 PM", closed: false },
+      { day: "Saturday",  open: "12:00 PM", close: "4:00 PM", closed: false },
+      { day: "Sunday",    open: "12:00 PM", close: "4:00 PM", closed: false },
     ],
     amenities: [
       "Historic Schoolhouse Museum",
@@ -972,6 +1108,7 @@ Private event reservations for sections of the park are available — the covere
     featured:   false,
     priceRange: "$",
     tags:       ["museum", "free", "history", "park", "dog-friendly", "picnic"],
+    tier:       "free" as ListingTier,
   },
 ];
 
