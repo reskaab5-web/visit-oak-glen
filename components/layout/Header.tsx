@@ -78,7 +78,7 @@ export function Header() {
         "sticky top-0 z-50 w-full",
         "transition-all duration-slow ease-premium",
         isScrolled
-          ? "bg-brand-primary/[0.97] backdrop-blur-md shadow-modal"
+          ? "bg-brand-primary backdrop-blur-md shadow-modal"
           : "bg-brand-primary",
       ].join(" ")}
     >
@@ -106,7 +106,7 @@ export function Header() {
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent",
                     isActive
                       ? "text-surface bg-brand-primary-mid/50"
-                      : "text-surface/75 hover:text-surface hover:bg-brand-primary-mid/35",
+                      : "text-surface/90 hover:text-surface hover:bg-brand-primary-mid/35",
                   ].join(" ")}
                 >
                   {label}

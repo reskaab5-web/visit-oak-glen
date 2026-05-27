@@ -16,10 +16,16 @@
  */
 
 interface GoogleMapEmbedProps {
-  /** The business's full name — used to find the GBP pin */
+  /** The business's full name — used as fallback text search */
   businessName: string;
   /** Formatted street address including city, state, zip */
   address: string;
+  /**
+   * Google Maps Place ID (e.g. "ChIJxxxxxxxxxxxxxxxx").
+   * When provided, the embed pins the exact Google Business Profile listing.
+   * Auto-populated by running: node scripts/fetch-place-ids.mjs
+   */
+  placeId?: string;
   /** iframe height in pixels. Default: 300 */
   height?: number;
   /** Optional additional class names for the wrapper div */
@@ -29,6 +35,7 @@ interface GoogleMapEmbedProps {
 export function GoogleMapEmbed({
   businessName,
   address,
+  placeId,
   height = 300,
   className,
 }: GoogleMapEmbedProps) {
@@ -38,9 +45,11 @@ export function GoogleMapEmbed({
   // The address "Get directions" link still works as a fallback.
   if (!apiKey) return null;
 
-  // Query by name + address so Google finds the exact GBP listing.
-  const query = encodeURIComponent(`${businessName}, ${address}`);
-  const src   = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${query}&zoom=15`;
+  // Prefer Place ID (exact GBP pin) over text search.
+  const q   = placeId
+    ? `place_id:${placeId}`
+    : encodeURIComponent(`${businessName}, ${address}`);
+  const src = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${q}&zoom=17`;
 
   return (
     <div

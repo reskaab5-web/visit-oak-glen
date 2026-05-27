@@ -214,13 +214,13 @@ export default async function BusinessDetailPage({ params }: PageProps) {
       <div className="bg-surface border-b border-surface-muted">
         <div className="max-w-site mx-auto px-6 lg:px-8 py-3 flex items-center gap-1.5 flex-wrap">
           <Link href="/"
-            className="text-content-subtle hover:text-brand-primary-mid text-body-sm transition-colors duration-200">Home</Link>
+            className="text-content-base hover:text-brand-primary-mid text-body-sm transition-colors duration-200">Home</Link>
           <ChevronRight size={13} className="text-surface-muted" aria-hidden="true" />
           <Link href="/directory"
-            className="text-content-subtle hover:text-brand-primary-mid text-body-sm transition-colors duration-200">Directory</Link>
+            className="text-content-base hover:text-brand-primary-mid text-body-sm transition-colors duration-200">Directory</Link>
           <ChevronRight size={13} className="text-surface-muted" aria-hidden="true" />
           <Link href={`/categories/${business.categorySlug}`}
-            className="text-content-subtle hover:text-brand-primary-mid text-body-sm transition-colors duration-200">
+            className="text-content-base hover:text-brand-primary-mid text-body-sm transition-colors duration-200">
             {business.category}
           </Link>
           <ChevronRight size={13} className="text-surface-muted" aria-hidden="true" />
@@ -646,6 +646,7 @@ export default async function BusinessDetailPage({ params }: PageProps) {
                 <GoogleMapEmbed
                   businessName={business.name}
                   address={fullAddress}
+                  placeId={business.placeId}
                   height={280}
                   className="rounded-none rounded-b-lg border border-t-0 border-surface-muted"
                 />

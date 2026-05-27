@@ -10,31 +10,38 @@
 ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
+  /*
+   * Colors are defined as space-separated RGB channels so Tailwind's
+   * opacity modifier syntax (e.g. bg-brand-primary/40, text-surface/80)
+   * works correctly across the entire site.
+   * To reskin: update ONLY these values — no Tailwind config changes needed.
+   */
+
   /* Primary brand color (nav, headings, deep backgrounds) */
-  --color-brand-primary:         #1A2E1A;
-  --color-brand-primary-mid:     #2D4A2D;
-  --color-brand-primary-light:   #4A7A4A;
-  --color-brand-primary-pale:    #EEF4EE;
+  --color-brand-primary:         26 46 26;
+  --color-brand-primary-mid:     45 74 45;
+  --color-brand-primary-light:   74 122 74;
+  --color-brand-primary-pale:    238 244 238;
 
   /* Accent / highlight color (CTAs, stars, badges, focus rings) */
-  --color-brand-accent:          #C17F24;
-  --color-brand-accent-dark:     #A86B1A;
-  --color-brand-accent-pale:     #F5E6C8;
+  --color-brand-accent:          193 127 36;
+  --color-brand-accent-dark:     168 107 26;
+  --color-brand-accent-pale:     245 230 200;
 
   /* Surface / background tones */
-  --color-surface:               #F5F0E8;
-  --color-surface-warm:          #F0EAE0;
-  --color-surface-muted:         #DDD6C8;
+  --color-surface:               245 240 232;
+  --color-surface-warm:          240 234 224;
+  --color-surface-muted:         221 214 200;
 
   /* Content / text tones */
-  --color-content-strong:        #2C2416;
-  --color-content-base:          #5C5040;
-  --color-content-subtle:        #8C7E6A;
+  --color-content-strong:        44 36 22;
+  --color-content-base:          92 80 64;
+  --color-content-subtle:        140 126 106;
 
   /* Text placed on accent-colored backgrounds */
-  --color-on-accent:             #6B4226;
+  --color-on-accent:             107 66 38;
 
-  /* RGB helpers for box-shadow rgba() — must stay in sync with hex above */
+  /* RGB helpers for box-shadow rgba() — comma format for legacy rgba() calls */
   --shadow-rgb:                  44, 36, 22;
   --color-brand-accent-rgb:      193, 127, 36;
   --color-brand-primary-rgb:     26, 46, 26;

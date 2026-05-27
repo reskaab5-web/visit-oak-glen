@@ -66,6 +66,8 @@ export interface Business {
   tier:             ListingTier;
   socialLinks?:     SocialLink[];
   pressLinks?:      PressLink[];
+  /** Google Maps Place ID — enables exact GBP embed. Auto-populated by scripts/fetch-place-ids.mjs */
+  placeId?:         string;
 }
 
 export interface Category {
@@ -136,6 +138,7 @@ It's a simple place done right: no flashy attractions, just honest fruit, honest
     priceRange: "$",
     tags:       ["apples", "jams", "preserves", "year-round", "farm-store"],
     tier:       "standard",
+  placeId:         "ChIJgyi_bUpO24AR8MdoJfkyjAA",
   },
 
   {
@@ -193,6 +196,7 @@ The antiques and gifts room inside the historic shed rounds out the visit with l
     priceRange: "$$",
     tags:       ["cider", "wine-tasting", "donuts", "u-pick", "historic", "raspberries"],
     tier:       "premium",
+  placeId:         "ChIJ5whc3a5P24AR8QdtDLTXGxc",
     socialLinks: [
       { platform: "facebook",  url: "https://www.facebook.com/snowlineorchards" },
       { platform: "instagram", url: "https://www.instagram.com/snowlineorchards" },
@@ -270,6 +274,7 @@ For those seeking a bigger adventure, horseback rides and wagon rides traverse t
       "horseback", "bbq", "bakery", "petting-zoo",
     ],
     tier:       "premium",
+    placeId:    "ChIJCwoOsaZP24ARm0RDoxNOBlE",
     socialLinks: [
       { platform: "facebook",    url: "https://www.facebook.com/losriosrancho" },
       { platform: "instagram",   url: "https://www.instagram.com/losriosrancho" },
@@ -344,6 +349,7 @@ Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up w
     priceRange: "$",
     tags:       ["u-pick", "cider-press", "seasonal", "pumpkins", "weekend-only"],
     tier:       "free",
+  placeId:         "ChIJ1e03g6BP24ARJ27jTmFGxAU",
   },
 
   {
@@ -399,6 +405,7 @@ Willowbrook is a quieter corner of Oak Glen — not the biggest or the loudest, 
     priceRange: "$",
     tags:       ["cider-press", "u-pick", "honey", "jams", "farm-store"],
     tier:       "free",
+    placeId:    "ChIJ5XhaOqBP24ARm1KrxQZTvQM",
   },
 
   {
@@ -456,6 +463,7 @@ The farm shop carries what the land produces — fresh fruit, cut flowers, dried
     priceRange: "$$$",
     tags:       ["regenerative", "flowers", "dining-events", "floral-studio", "u-pick"],
     tier:       "standard",
+  placeId:         "ChIJo7NlKaBP24AREKT2TF6D0gE",
     socialLinks: [
       { platform: "instagram", url: "https://www.instagram.com/stonesoupfarmca" },
     ],
@@ -520,6 +528,7 @@ Craft cocktails pull from a thoughtful spirits list with a regional bent, and th
     priceRange: "$$$",
     tags:       ["steakhouse", "fine-dining", "brunch", "cocktails", "banquet"],
     tier:       "standard",
+  placeId:         "ChIJgSHHhzZO24ARH8V0ympIdq0",
     socialLinks: [
       { platform: "facebook", url: "https://www.facebook.com/oakglensteakhouse" },
     ],
@@ -578,6 +587,7 @@ The cigar selection, carried in a dedicated humidor, has built a loyal following
     priceRange: "$$",
     tags:       ["pizza", "cider", "coffee", "cigars", "patio"],
     tier:       "standard",
+  placeId:         "ChIJ_yHUmk5P24AR0vqt8ZgalQ8",
     socialLinks: [
       { platform: "instagram", url: "https://www.instagram.com/wilshiresappleshed" },
       { platform: "facebook",  url: "https://www.facebook.com/wilshiresappleshed" },
@@ -641,6 +651,7 @@ Tasting is available at the cidery during regular hours. For visitors working th
     priceRange: "$$",
     tags:       ["hard-cider", "tasting-room", "craft", "estate-grown", "local"],
     tier:       "premium",
+  placeId:         "ChIJN5Pdds9P24ARZEM7CHWqpvk",
     socialLinks: [
       { platform: "instagram", url: "https://www.instagram.com/oakglenciderco" },
       { platform: "facebook",  url: "https://www.facebook.com/oakglenciderco" },
@@ -711,6 +722,7 @@ Cider is pressed from the ranch's own apples, and the gift selection skews towar
     priceRange: "$",
     tags:       ["honey", "cider", "gifts", "apples", "small-batch"],
     tier:       "free",
+  placeId:         "ChIJ00HaU2hP24ARkoTHr39Y7pI",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -770,6 +782,7 @@ Bookings are handled directly through the manor, and rates and availability are 
     priceRange: "$$$",
     tags:       ["bed-and-breakfast", "historic", "groups", "weddings", "retreat"],
     tier:       "premium",
+  placeId:         "ChIJZSxM0kBP24ARtbkVC3_6w5o",
     socialLinks: [
       { platform: "facebook",  url: "https://www.facebook.com/stoneoakmanor" },
       { platform: "instagram", url: "https://www.instagram.com/stoneoakmanor" },
@@ -829,6 +842,7 @@ The peaceful natural surroundings, combined with facilities designed for group g
     priceRange: "$$",
     tags:       ["retreat", "conference", "groups", "church", "camp"],
     tier:       "standard",
+  placeId:         "ChIJid6sLalP24AR3UhnXGCx8D8",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -893,6 +907,7 @@ Dinner theater events are held on select evenings throughout the year, combining
       "overnight", "family-friendly", "events",
     ],
     tier:       "premium",
+  placeId:         "ChIJdduuRZ9P24AR_ieQcVeSnSM",
     socialLinks: [
       { platform: "facebook",  url: "https://www.facebook.com/rileysfarm" },
       { platform: "twitter",   url: "https://twitter.com/rileysfarm" },
@@ -974,6 +989,7 @@ Axe Therapy — Oak Tree Mountain's axe-throwing facility — has emerged as a s
       "bakery", "live-music", "year-round",
     ],
     tier:       "premium",
+    placeId:    "ChIJiTqTKk1O24ARpmyHetkNJcY",
     socialLinks: [
       { platform: "facebook",  url: "https://www.facebook.com/oaktreemountain" },
       { platform: "instagram", url: "https://www.instagram.com/oaktreemountainoakglen" },
@@ -1044,7 +1060,8 @@ The Homestead is a reminder that the best event venues are the ones where the lo
     featured:   false,
     priceRange: "$$$",
     tags:       ["weddings", "outdoor-venue", "private-events", "scenic-views", "orchard"],
-    tier:       "standard" as ListingTier,
+    tier:       "standard"
+  placeId:         "ChIJ90VYiQpP24ARLNMAoZ8WMm4", as ListingTier,
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -1108,7 +1125,8 @@ Private event reservations for sections of the park are available — the covere
     featured:   false,
     priceRange: "$",
     tags:       ["museum", "free", "history", "park", "dog-friendly", "picnic"],
-    tier:       "free" as ListingTier,
+    tier:       "free"
+  placeId:         "ChIJieX3IgpP24ARe0wROR8gmGE", as ListingTier,
   },
 ];
 

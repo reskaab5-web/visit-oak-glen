@@ -27,28 +27,28 @@ const config: Config = {
       // ─── Color palette ───────────────────────────────────────────────────
       colors: {
         // Primary brand color
-        "brand-primary":       "var(--color-brand-primary)",
-        "brand-primary-mid":   "var(--color-brand-primary-mid)",
-        "brand-primary-light": "var(--color-brand-primary-light)",
-        "brand-primary-pale":  "var(--color-brand-primary-pale)",
+        "brand-primary":       "rgb(var(--color-brand-primary) / <alpha-value>)",
+        "brand-primary-mid":   "rgb(var(--color-brand-primary-mid) / <alpha-value>)",
+        "brand-primary-light": "rgb(var(--color-brand-primary-light) / <alpha-value>)",
+        "brand-primary-pale":  "rgb(var(--color-brand-primary-pale) / <alpha-value>)",
 
         // Accent / highlight color
-        "brand-accent":        "var(--color-brand-accent)",
-        "brand-accent-dark":   "var(--color-brand-accent-dark)",
-        "brand-accent-pale":   "var(--color-brand-accent-pale)",
+        "brand-accent":        "rgb(var(--color-brand-accent) / <alpha-value>)",
+        "brand-accent-dark":   "rgb(var(--color-brand-accent-dark) / <alpha-value>)",
+        "brand-accent-pale":   "rgb(var(--color-brand-accent-pale) / <alpha-value>)",
 
         // Surface / background tones
-        "surface":             "var(--color-surface)",
-        "surface-warm":        "var(--color-surface-warm)",
-        "surface-muted":       "var(--color-surface-muted)",
+        "surface":             "rgb(var(--color-surface) / <alpha-value>)",
+        "surface-warm":        "rgb(var(--color-surface-warm) / <alpha-value>)",
+        "surface-muted":       "rgb(var(--color-surface-muted) / <alpha-value>)",
 
         // Content / text tones
-        "content-strong":      "var(--color-content-strong)",
-        "content-base":        "var(--color-content-base)",
-        "content-subtle":      "var(--color-content-subtle)",
+        "content-strong":      "rgb(var(--color-content-strong) / <alpha-value>)",
+        "content-base":        "rgb(var(--color-content-base) / <alpha-value>)",
+        "content-subtle":      "rgb(var(--color-content-subtle) / <alpha-value>)",
 
         // Text on accent-colored backgrounds
-        "on-accent":           "var(--color-on-accent)",
+        "on-accent":           "rgb(var(--color-on-accent) / <alpha-value>)",
       },
 
       // ─── Typography ──────────────────────────────────────────────────────
