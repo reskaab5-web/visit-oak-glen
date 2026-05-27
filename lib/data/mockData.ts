@@ -666,15 +666,15 @@ Tasting is available at the cidery during regular hours. For visitors working th
 
   {
     id:   "10",
-    slug: "apple-blossom-ranch",
-    name: "Apple Blossom Ranch",
+    slug: "the-holy-honey-co",
+    name: "The Holy Honey Co.",
     shortDescription:
-      "Small orchard gift shop carrying home-grown apples, fresh-pressed cider, raw local honey, and a handpicked selection of artisan gifts.",
-    description: `Apple Blossom Ranch keeps things simple, and that simplicity is the point. The small gift shop carries what the ranch grows and what the local area produces — home-grown apples, fresh-pressed cider, raw honey harvested from on-property hives, and a curated selection of gifts that reflect the Oak Glen spirit without veering into tourist-trap territory.
+      "Small-batch raw honey harvested from on-property hives, home-grown apples, fresh-pressed cider, and artisan gifts — open weekends in Oak Glen.",
+    description: `The Holy Honey Co. is one of Oak Glen's most distinctive stops — a small, unhurried shop built around what the land actually produces. The centrepiece is raw honey harvested from hives kept across the orchard, where bees forage among apple blossoms and mountain wildflowers. The result is a distinctly floral, single-origin honey unlike anything you'll find at a grocery store. Raw, unfiltered, and sold in small-batch jars, it's one of those products that converts skeptics on first taste.
 
-The honey operation is a particular point of pride: the ranch keeps hives across the orchard, and the resulting honey carries a distinctly floral, apple-blossom character that's unlike anything produced elsewhere. Raw, unfiltered, and sold in small-batch jars, it's one of those products that converts skeptics on first taste.
+Alongside the honey, the shop carries home-grown apples, fresh-pressed cider made from the ranch's own fruit, and a curated selection of locally made gifts — preserves, candles, and seasonal décor that reflect the Oak Glen spirit without veering into tourist-trap territory.
 
-Cider is pressed from the ranch's own apples, and the gift selection skews toward locally made goods — preserves, candles, seasonal décor, and the kind of items that make sense as a token of a day well spent in the mountains. For visitors who want a quiet, unhurried stop, Apple Blossom Ranch delivers exactly that.`,
+Open weekends only, The Holy Honey Co. is worth timing your visit around. For visitors who want a quiet, genuine, unhurried stop in the mountains, this is exactly that.`,
     category:     "Shops & Stores",
     categorySlug: "shops",
     rating:       4.6,
