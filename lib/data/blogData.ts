@@ -60,8 +60,8 @@ export const blogPosts: BlogPost[] = [
       "Oak Glen is home to more than a dozen working orchards, and choosing the right one comes down to what you're after. Here's how to match your group to the perfect farm.",
     publishedAt:  "2025-09-05",
     updatedAt:    "2025-10-01",
-    coverImageUrl: "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=1200&q=80",
-    coverImageAlt: "Rows of apple trees loaded with red apples at an Oak Glen orchard",
+    coverImageUrl: "https://momsoakglen.com/wp-content/uploads/2025/08/20250829_113420-1-1024x576.jpg",
+    coverImageAlt: "Apple trees heavy with fruit at Mom's Country Orchards in Oak Glen",
     author: {
       name:  "Visit Oak Glen",
       title: "Editorial Team",
@@ -123,8 +123,8 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Most people think of Oak Glen as an October destination. The locals know it's worth the drive in January, April, and July too.",
     publishedAt:  "2025-11-15",
-    coverImageUrl: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=80",
-    coverImageAlt: "Oak Glen mountain landscape in winter with light snow on the peaks",
+    coverImageUrl: "https://rileysfarm.com/wp-content/uploads/2024/09/web_fj_20240908.jpg",
+    coverImageAlt: "Riley's Farm grounds with the San Bernardino mountain backdrop in autumn",
     author: {
       name:  "Visit Oak Glen",
       title: "Editorial Team",
@@ -176,8 +176,8 @@ export const blogPosts: BlogPost[] = [
       "Oak Glen's elevation, orchard setting, and dramatic mountain views make it one of Southern California's most distinctive wedding destinations. Here's how to choose the right venue.",
     publishedAt:  "2025-02-14",
     updatedAt:    "2025-04-01",
-    coverImageUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
-    coverImageAlt: "Outdoor wedding ceremony in an orchard setting with mountain views",
+    coverImageUrl: "https://homesteadoakglen.com/wp-content/uploads/sites/6084/2018/10/Sewell-A-0914.jpg",
+    coverImageAlt: "Outdoor wedding ceremony at The Homestead at Wilshire Ranch in Oak Glen",
     author: {
       name:  "Visit Oak Glen",
       title: "Editorial Team",
@@ -228,8 +228,8 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Dining in Oak Glen tends to be straightforward and honest — farm-sourced ingredients, generous portions, and settings that match the mountain character of the community.",
     publishedAt:  "2025-08-20",
-    coverImageUrl: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80",
-    coverImageAlt: "A table set for dinner with views of an apple orchard",
+    coverImageUrl: "https://oakglensteakhouse.com/wp-content/uploads/2025/10/E5821913-0AEE-490D-BF51-8BE5005E0DF6_L0_001-7_16_2024-8_15_01-PM-scaled.jpg",
+    coverImageAlt: "Interior dining room at Oak Glen Steak House with warm mountain ambiance",
     author: {
       name:  "Visit Oak Glen",
       title: "Editorial Team",
