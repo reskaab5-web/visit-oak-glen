@@ -308,8 +308,8 @@ export default function EventsPage() {
               >
                 <div className="relative h-64 sm:h-72">
                   <Image
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
-                    alt="Autumn harvest in the mountain orchards"
+                    src="https://rileysfarm.com/wp-content/uploads/2024/09/web_fj_20240908.jpg"
+                    alt="Riley's Farm grounds with mountain backdrop in autumn"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
