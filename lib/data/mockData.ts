@@ -312,9 +312,9 @@ Stone Pantry's seasonal rhythm is part of its charm — it asks you to show up w
     rating:       4.6,
     reviewCount:  143,
     imageUrl:
-      "https://img1.wsimg.com/isteam/ip/bc8d3cfb-d5b5-44c5-b2b9-a09a22c6a44d/Apples.RedDelicious.01.jpg/:/rs=w:1200,h=900",
+      "https://img1.wsimg.com/isteam/ip/bc8d3cfb-d5b5-44c5-b2b9-a09a22c6a44d/IMG_0220.JPG/:/rs=w:1200,h:900,cg:true",
     galleryImages: [
-      "https://img1.wsimg.com/isteam/ip/bc8d3cfb-d5b5-44c5-b2b9-a09a22c6a44d/Apples.RedDelicious.01.jpg",
+      "https://img1.wsimg.com/isteam/ip/bc8d3cfb-d5b5-44c5-b2b9-a09a22c6a44d/IMG_0220.JPG/:/rs=w:1200,h:900,cg:true",
     ],
     location: "Oak Glen, CA",
     address: {
