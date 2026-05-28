@@ -92,7 +92,7 @@ export default function HomePage() {
             sizes="100vw"
           />
           {/* Gradient overlay — forest tones */}
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/40 via-brand-primary/60 to-brand-primary/88" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/65 via-brand-primary/78 to-brand-primary/92" />
         </div>
 
         {/* Hero content — text layer only; bg image loads immediately for LCP */}
