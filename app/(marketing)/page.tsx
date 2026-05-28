@@ -82,7 +82,7 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&q=85"
+            src="https://oakglenorchard.com/images/504800/0_0.jpg"
             alt=""
             role="presentation"
             fill

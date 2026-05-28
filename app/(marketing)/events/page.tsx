@@ -133,7 +133,7 @@ const APPLE_BLOSSOM_SCHEMA = buildEventSchema(
     startDate:   "2027-05-01",
     endDate:     "2027-05-31",
     url:         `${siteConfig.url}/events#apple-blossom`,
-    imageUrl:    "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80",
+    imageUrl:    "https://oakglenorchard.com/images/504800/0_0.jpg",
   },
   siteConfig,
 );
@@ -145,7 +145,7 @@ const APPLE_BUTTER_SCHEMA = buildEventSchema(
     startDate:   "2026-11-27",
     endDate:     "2026-11-29",
     url:         `${siteConfig.url}/events#apple-butter`,
-    imageUrl:    "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80",
+    imageUrl:    "https://rileysfarm.com/wp-content/uploads/2024/09/web_fj_20240908.jpg",
   },
   siteConfig,
 );
@@ -278,8 +278,8 @@ export default function EventsPage() {
               >
                 <div className="relative h-64 sm:h-72">
                   <Image
-                    src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80"
-                    alt="Apple orchards in spring bloom"
+                    src="https://oakglenorchard.com/images/504800/0_0.jpg"
+                    alt="Snow-Line Orchards in Oak Glen — apple orchard in season"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -350,8 +350,8 @@ export default function EventsPage() {
               {/* Image */}
               <div className="relative rounded-xl overflow-hidden shadow-card aspect-[4/3]">
                 <Image
-                  src="https://images.unsplash.com/photo-1490750967868-88df5691cc47?w=800&q=80"
-                  alt="Apple tree branches covered in white spring blossoms"
+                  src="https://oakglenorchard.com/images/504784/0_0.jpg"
+                  alt="Oak Glen orchard in spring — apple trees at Snow-Line Orchards"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -435,7 +435,7 @@ export default function EventsPage() {
       >
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80"
+            src="https://momsoakglen.com/wp-content/uploads/2025/09/IMG_20250908_111122.jpg"
             alt=""
             role="presentation"
             fill
@@ -544,8 +544,8 @@ export default function EventsPage() {
               <div className="order-1 lg:order-2">
                 <div className="relative rounded-xl overflow-hidden shadow-card aspect-[4/3] mb-6">
                   <Image
-                    src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80"
-                    alt="Autumn colours in the Oak Glen mountains during harvest season"
+                    src="https://rileysfarm.com/wp-content/uploads/2024/09/web_fj_20240908.jpg"
+                    alt="Riley's Farm in Oak Glen during autumn harvest season"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
