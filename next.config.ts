@@ -45,8 +45,28 @@ const nextConfig: NextConfig = {
   // Add domains here for any external image hosts used in mockData / CMS.
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "picsum.photos"       },
-      { protocol: "https", hostname: "images.unsplash.com" },
+      // Legacy / fallback
+      { protocol: "https", hostname: "picsum.photos"               },
+      { protocol: "https", hostname: "images.unsplash.com"         },
+      // Business websites — WordPress
+      { protocol: "https", hostname: "momsoakglen.com"             },
+      { protocol: "https", hostname: "oakglenorchard.com"          },
+      { protocol: "https", hostname: "oakglensteakhouse.com"       },
+      { protocol: "https", hostname: "rileysfarm.com"              },
+      { protocol: "https", hostname: "willowbrookapplefarm.com"    },
+      { protocol: "https", hostname: "homesteadoakglen.com"        },
+      { protocol: "https", hostname: "www.oakglen.org"             },
+      // Business websites — Squarespace CDN
+      { protocol: "https", hostname: "images.squarespace-cdn.com"  },
+      // Business websites — Wix CDN
+      { protocol: "https", hostname: "static.wixstatic.com"        },
+      // Business websites — GoDaddy CDN
+      { protocol: "https", hostname: "img1.wsimg.com"              },
+      // Yelp photos (schoolhouse museum)
+      { protocol: "https", hostname: "s3-media0.fl.yelpcdn.com"    },
+      { protocol: "https", hostname: "s3-media1.fl.yelpcdn.com"    },
+      { protocol: "https", hostname: "s3-media2.fl.yelpcdn.com"    },
+      { protocol: "https", hostname: "s3-media3.fl.yelpcdn.com"    },
     ],
   },
 
