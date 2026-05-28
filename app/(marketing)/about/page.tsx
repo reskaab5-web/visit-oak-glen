@@ -127,13 +127,13 @@ export default function AboutPage() {
         {/* Background */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=85"
+            src="https://www.oakglen.org/wp-content/uploads/2024/03/Cottages-1.jpg"
             alt=""
             role="presentation"
             fill
             priority
             quality={90}
-            className="object-cover object-center"
+            className="object-cover object-top"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/30 via-brand-primary/58 to-brand-primary/85" />
@@ -180,7 +180,7 @@ export default function AboutPage() {
             {/* Image */}
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-card-hover order-2 lg:order-1">
               <Image
-                src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=900&q=85"
+                src="https://momsoakglen.com/wp-content/uploads/2025/08/20250829_113420-1-1024x576.jpg"
                 alt="Apple trees in an Oak Glen orchard"
                 fill
                 quality={85}
@@ -354,7 +354,7 @@ export default function AboutPage() {
       <section className="relative py-24 px-6 lg:px-8 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&q=80"
+            src="https://www.oakglen.org/wp-content/uploads/2024/04/oak-2-scaled.jpg"
             alt=""
             role="presentation"
             fill
