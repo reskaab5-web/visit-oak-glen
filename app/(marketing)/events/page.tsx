@@ -175,7 +175,7 @@ export default function EventsPage() {
         {/* Background */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=85"
+            src="https://www.oakglen.org/wp-content/uploads/2024/04/oak-2-scaled.jpg"
             alt=""
             role="presentation"
             fill
