@@ -70,7 +70,7 @@ export default async function DirectoryPage({
         {/* Background */}
         <div className="absolute inset-0" aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85"
+            src="https://www.oakglen.org/wp-content/uploads/2024/04/oak-2-scaled.jpg"
             alt=""
             role="presentation"
             fill
